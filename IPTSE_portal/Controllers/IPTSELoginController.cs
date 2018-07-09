@@ -66,12 +66,20 @@ namespace IPTSE_portal.Controllers
                     else
                     {
                         var obj1 = db.login_table.Where(a => a.Id.Equals(login_table.Id) && a.password.Equals(login_table.password)).FirstOrDefault();
-                        if (login_table.Id == Decimal.Parse("91620195"))
+                        if (obj1 != null)
                         {
-                            if (login_table.password == "SVBUU0VfQURNSU5fTE9HSU4=")
+                            Session["id"] = obj.Id.ToString();
+                            return RedirectToAction("Index", "Dashboard");
+                        }
+                        else
+                        {
+                            if (login_table.Id == Decimal.Parse("91620195"))
                             {
-                                Session["admin_login"] = "91620195";
-                                return RedirectToAction("Index", "Admin");
+                                if (login_table.password == "SVBUU0VfQURNSU5fTE9HSU4=")
+                                {
+                                    Session["admin_login"] = "91620195";
+                                    return RedirectToAction("Index", "Admin");
+                                }
                             }
                         }
                         ViewBag.ErrorMessage = "Invalid Credencial........";
