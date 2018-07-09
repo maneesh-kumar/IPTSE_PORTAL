@@ -1,0 +1,162 @@
+﻿@model IPTSE_portal.Models.IPTSE_Reg_table
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IPTSE_Reg_table</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mid_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mid_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.addr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addr1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.addr2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addr2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zipcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zipcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schoolname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schoolname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.standerd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.standerd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mothername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mothername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fathername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fathername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteername)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "RegistrationList")
+</p>

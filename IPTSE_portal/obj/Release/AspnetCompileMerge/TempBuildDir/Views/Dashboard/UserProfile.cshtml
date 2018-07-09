@@ -1,0 +1,169 @@
+﻿@model IPTSE_portal.Models.IPTSE_Reg_table
+
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_ipse.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <!-- Page Content -->
+    <div id="page-wrapper" style="background-color:lemonchiffon">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">USER DETAILS</h1>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.first_name)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.first_name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.mid_name)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.mid_name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.last_name)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.last_name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.gender)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.gender)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.addr1)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.addr1)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.addr2)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.addr2)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.city)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.city)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.state)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.state)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.zipcode)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.zipcode)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.country)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.country)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.contact)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.contact)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.email)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.email)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.dob)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.dob)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.schoolname)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.schoolname)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.standerd)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.standerd)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.mothername)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.mothername)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.fathername)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.fathername)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.volunteername)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.volunteername)
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+}

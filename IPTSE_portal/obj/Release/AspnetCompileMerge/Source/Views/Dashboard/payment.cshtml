@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "payment";
+    Layout = "~/Views/Shared/_ipse.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <!-- Page Content -->
+    <div id="page-wrapper" style="background-color:lemonchiffon">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">PAYMENT</h1>
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-7">
+                            <h4 style="color: #ff0000;" align="Center">@TempData["Message"]</h4>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-7">
+                            <table width="100%">
+                                <tr>
+                                    <td>
+                                        @*<ul style="color:brown;font-size:large">
+                                            <li>
+                                               
+                                            </li>
+                                            <li>
+                                                
+                                            </li>
+                                            <li>
+                                                
+                                            </li>
+                                        </ul>*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <button id="rzp-button1" onclick="e()">Pay Now</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+}
+    <!-- /#page-wrapper -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "rzp_live_Eh2gKLkzpjCLlK",
+            "amount": "25000", 
+            "name": "IPTSE",
+            "description": "Exam Fee",
+            "image": "/your_logo.png",
+            "handler": function (response) {
+                alert("Payment Successfull!");
+                window.location.href = "http://www.iptse.in/Dashboard/paymentdetails?" + response.razorpay_payment_id;
+            },
+            "notes": {
+                "address": "Hello World"
+            },
+            "theme": {
+                "color": "#F37254"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+
+        document.getElementById('rzp-button1').onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
