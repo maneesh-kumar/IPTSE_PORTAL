@@ -5,207 +5,197 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="text-align:center">Registration Form</h2>
-
+<h3 style="text-align:center;">Registration Form</h3>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal" >
-        <hr />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-7">
-                <h4 style="color: #ff0000;" align="Center">@ViewBag.ErrorMessage</h4>
-            </div>
-        </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <table align="right" style="width:950px;">
-
-            <tr><td>
-                    <div class="form-group">
-                        <span>*</span>
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name", maxlength = 50 } })
-                            @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                
-                </td><td>
-                         <div class="form-group">
-                             @*@Html.LabelFor(model => model.mid_name, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                             <div class="col-md-10">
-                                 @Html.EditorFor(model => model.mid_name, new { htmlAttributes = new { @class = "form-control", placeholder = "Middle Name", maxlength = 50 } })
-                                 @Html.ValidationMessageFor(model => model.mid_name, "", new { @class = "text-danger" })
-                             </div>
-                         </div>
-                   </td></tr>
-            <tr><td>
-                
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control", placeholder = "Last Name", maxlength = 50 } })
-                            @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                
-                </td><td>
-                         <div class="form-group">
-                             @*@Html.LabelFor(model => model.dob, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                             <div class="col-md-10">
-                                 @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control datefield",@readonly = "readonly", placeholder = "DOB:MM/DD/YYYY" } })
-
-                                 @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
-                             </div>
-                         </div>
-                    </td>
-            </tr>
-            <tr><td>
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.addr1, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.addr1, new { htmlAttributes = new { @class = "form-control", placeholder = "House No./Street No.", maxlength = 50 } })
-                            @Html.ValidationMessageFor(model => model.addr1, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                
-                
-                </td><td>
-
     <div class="form-group">
-        @*@Html.LabelFor(model => model.addr2, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.addr2, new { htmlAttributes = new { @class = "form-control", placeholder = "Village/Colony", maxlength = 50 } })
-            @Html.ValidationMessageFor(model => model.addr2, "", new { @class = "text-danger" })
+        <div class="col-md-offset-2 col-md-7">
+            <h4 style="color: #ff0000;" align="Center">@ViewBag.ErrorMessage</h4>
         </div>
     </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personal Details</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                   @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "First Name*", maxlength = 50 } })
+                                @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-</td></tr>
-            <tr><td>
-                
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control", placeholder = "City/District Name", maxlength = 50 } })
-                            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.mid_name, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Middle Name", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.mid_name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Last Name*", maxlength = 50 } })
+                                @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                
-                </td><td>
-                    
-                         <div class="form-group">
-                             @*@Html.LabelFor(model => model.state, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                             <div class="col-md-10">
-                                 @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control", placeholder = "State Name", maxlength = 50 } })
-                                 @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
-                             </div>
-                         </div>
-                    
-                    </td></tr>
-            <tr>
-                <td>
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.zipcode, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(model => model.zipcode,new { @class = "form-control", placeholder = "Pin/Zip Code", maxlength = 10 })
-                            @Html.ValidationMessageFor(model => model.zipcode, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                </td>
-                <td>
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.country, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.country, new { htmlAttributes = new { @class = "form-control", placeholder = "Nationality", maxlength = 50 } })
-                            @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr><td>
-                
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.contact, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.contact, new { htmlAttributes = new { @class = "form-control", placeholder = "Mobile", maxlength = 50 } })
-                            @Html.ValidationMessageFor(model => model.contact, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                
-                </td><td>
-                    
-                         <div class="form-group">
-                             @*@Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                             <div class="col-md-10">
-                                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email-Id", maxlength = 50 } })
-                                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                             </div>
-                         </div>
-                    
-                    </td></tr>
-            <tr><td>
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @*@Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
-                            *@
-
-                            @Html.DropDownList("Gender",  new List<SelectListItem>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control input-sm", @readonly = "readonly", placeholder = "DOB MM/DD/YYY*" } })
+                                    @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+                                </div>
+                           </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.DropDownList("Gender", new List<SelectListItem>
                                         {
                                             new SelectListItem{ Text="----Select Sex----",  },
                                             new SelectListItem{ Text="Male", Value = "Male" },
                                             new SelectListItem{ Text="Female", Value = "Female" }
-                                        },new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger", maxlength = 10 })
-                        </div>
-                    </div>
-                
-                </td><td>
-                         <div class="form-group">
-                             @*@Html.LabelFor(model => model.schoolname, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                             <div class="col-md-10">
-                                 @Html.EditorFor(model => model.schoolname, new { htmlAttributes = new { @class = "form-control", placeholder = "School/College Name", maxlength = 50 } })
-                                 @Html.ValidationMessageFor(model => model.schoolname, "", new { @class = "text-danger" })
-                             </div>
-                         </div>
-                    
-                    </td></tr>
-            <tr><td>
+                                        }, new { @class = "form-control input-sm", })
+                                    @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger", maxlength = 10 })
 
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.standerd, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.standerd, new { htmlAttributes = new { @class = "form-control", placeholder = "Standered", maxlength = 50 } })
-            @Html.ValidationMessageFor(model => model.standerd, "", new { @class = "text-danger" })
-        </div>
-    </div>
-</td><td>
-                    
-         <div class="form-group">
-             @*@Html.LabelFor(model => model.mothername, htmlAttributes: new { @class = "control-label col-md-2" })*@
-             <div class="col-md-10">
-                 @Html.EditorFor(model => model.mothername, new { htmlAttributes = new { @class = "form-control", placeholder = "Mother's Name", maxlength = 50 } })
-                 @Html.ValidationMessageFor(model => model.mothername, "", new { @class = "text-danger" })
-             </div>
-         </div>       
-                    
-                    </td></tr>
-            <tr><td>
-                
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.fathername, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.fathername, new { htmlAttributes = new { @class = "form-control", placeholder = "Father's Name", maxlength = 50 } })
-                            @Html.ValidationMessageFor(model => model.fathername, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Email-ID*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.fathername, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Father's Name*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.fathername, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                @Html.EditorFor(model => model.mothername, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Mother's Name*", maxlength = 50 } })
+                                @Html.ValidationMessageFor(model => model.mothername, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  @Html.EditorFor(model => model.country, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Nationality*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </td><td>
-                    
-                         <div class="form-group">
-                             @*@Html.LabelFor(model => model.volunteername, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                             <div class="col-md-10">
-                                 @Html.DropDownList("vname",  new List<SelectListItem>
+                      </div>
+                        <hr>
+                        <h3> Correspondence Details</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.addr1, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "House No./Street No.*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.addr1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                   @Html.EditorFor(model => model.addr2, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Village/Colony*", maxlength = 50 } })
+                                @Html.ValidationMessageFor(model => model.addr2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "City/District Name*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "State Name*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                   @Html.TextBoxFor(model => model.zipcode, new { @class = "form-control input-sm", placeholder = "Pin/Zip Code", maxlength = 10 })
+                                @Html.ValidationMessageFor(model => model.zipcode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.contact, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Mobile*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.contact, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Login Details</h3>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Email-ID*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.PasswordFor(model => model.password, new { @class = "form-control input-sm", @placeholder = "Password*", maxlength = 50 })
+                                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    @Html.PasswordFor(model => model.password,new { @class = "form-control input-sm", placeholder = "Confirm Password*", maxlength = 50 })
+                                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Educational Details</h3>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                   @Html.EditorFor(model => model.schoolname, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "School/College Name*", maxlength = 50 } })
+                                @Html.ValidationMessageFor(model => model.schoolname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.standard, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "standard*", maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.standard, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+
+                                    @Html.DropDownList("vname", new List<SelectListItem>
                                         {
                                             new SelectListItem{ Text="--Where did you hear about us?--",  },
                                             new SelectListItem{ Text="Social networking sites", Value = "Social networking sites" },
@@ -215,67 +205,75 @@
                                             new SelectListItem{ Text="Friends", Value = "Friends" },
                                             new SelectListItem{ Text="Volunteer", Value = "Volunteer" },
                                             new SelectListItem{ Text="Others", Value = "Others" }
-                                        },new { @class = "form-control", @onchange = "ShowHideTextBox(this)" })
-                                 @Html.EditorFor(model => model.volunteername, new { htmlAttributes = new { @class = "form-control", @id ="vtext", placeholder = "Your Answer" } })
-                                 @Html.ValidationMessageFor(model => model.volunteername, "", new { @class = "text-danger" })
-                             </div>
-                         </div>
-                    </td></tr>
-        </table>
-        
-        <div class="form-group">
-            <div class="col-md-offset-9 col-md-10">
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                                        }, new { @class = "form-control input-sm    ", @onchange = "ShowHideTextBox(this)" })
+                                    @Html.EditorFor(model => model.volunteername, new { htmlAttributes = new { @class = "form-control", @id = "vtext", placeholder = "Your Answer*" } })
+                                    @Html.ValidationMessageFor(model => model.volunteername, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-2 text-center col-md-2 text-center">
+                                <div class="form-group">
+                                    <input type="submit" value="Register" class="btn btn-info btn-block">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-2 text-center col-md-2 text-center">
+                                <div class="form-group">
+                                    <input type="Submit" value="clear" class="btn btn-info btn-block">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-      <br />
     </div>
-    
+</div>
 }
-
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.min.css"
-      rel="stylesheet" type="text/css" />
-<style>
-    .ui-widget {
-        font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
-        font-size: .9em;
-    }
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
-<script type="text/javascript">
-    $("#vtext").hide();
-    $(document).ready(function () {
-        $('.datefield').datepicker({
-            dateFormat: "mm/dd/yy",
-            changeMonth: true,
-            changeYear: true,
-            minDate: new Date(01,01,1990),
-            maxDate: new Date(),
-            showOn: "both",
-            buttonImage: '/Content/themes/base/images/cal.png',
-            buttonImageOnly: true,
-            yearRange: '1990:2018'
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.min.css"
+          rel="stylesheet" type="text/css" />
+    <style>
+        .ui-widget {
+            font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+            font-size: .9em;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $("#vtext").hide();
+        $(document).ready(function () {
+            $('.datefield').datepicker({
+                dateFormat: "mm/dd/yy",
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(01, 01, 1990),
+                maxDate: new Date(),
+                showOn: "both",
+                buttonImage: '/Content/themes/base/images/cal.png',
+                buttonImageOnly: true,
+                yearRange: '1990:2018'
+            });
         });
-    });
 
 
-    function ShowHideTextBox(ddlObject) {
-        var selectedValue = ddlObject.value;
-        if (selectedValue.toUpperCase() == "OTHERS" || selectedValue.toUpperCase() == "VOLUNTEER") {
-            $("#vtext").show();
-            $("#vname").hide();
-            document.getElementById("vtext").value = "";
-            //document.getElementById("vtext").value = ddlObject.options[ddlObject.selectedIndex].innerHTML;
+        function ShowHideTextBox(ddlObject) {
+            var selectedValue = ddlObject.value;
+            if (selectedValue.toUpperCase() == "OTHERS" || selectedValue.toUpperCase() == "VOLUNTEER") {
+                $("#vtext").show();
+                $("#vname").hide();
+                document.getElementById("vtext").value = "";
+                //document.getElementById("vtext").value = ddlObject.options[ddlObject.selectedIndex].innerHTML;
+            }
+            else {
+                $("#vtext").hide();
+                document.getElementById("vtext").value = ddlObject.options[ddlObject.selectedIndex].innerHTML;
+            }
         }
-        else {
-            $("#vtext").hide();
-            document.getElementById("vtext").value = ddlObject.options[ddlObject.selectedIndex].innerHTML;
-        }
-    }
-</script>
+    </script>

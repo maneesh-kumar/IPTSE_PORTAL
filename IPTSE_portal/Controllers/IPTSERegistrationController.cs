@@ -49,7 +49,7 @@ namespace IPTSE_portal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registration([Bind(Include = "Id,first_name,mid_name,last_name,gender,addr1,addr2,city,state,zipcode,country,contact,email,dob,schoolname,standerd,mothername,fathername,volunteername")] IPTSE_Reg_table iPTSE_Reg_table)
+        public ActionResult Registration([Bind(Include = "Id,first_name,mid_name,last_name,gender,addr1,addr2,city,state,zipcode,country,contact,email,password,dob,schoolname,standerd,mothername,fathername,volunteername")] IPTSE_Reg_table iPTSE_Reg_table)
         {
             if (ModelState.IsValid)
             {

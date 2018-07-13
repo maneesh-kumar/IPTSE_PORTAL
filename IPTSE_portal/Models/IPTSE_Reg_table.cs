@@ -80,6 +80,11 @@ namespace IPTSE_portal.Models
         [EmailAddress]
         public string email { get; set; }
 
+        [Required(ErrorMessage = "password Required!")]
+        [StringLength(50)]
+        [Display(Name = "Password")]
+        public string password { get; set; }
+
         [Required(ErrorMessage = "Date Of Birth Required!")]
         [Column(TypeName = "date")]
         [Display(Name = "DOB")]
@@ -94,7 +99,7 @@ namespace IPTSE_portal.Models
         [Required(ErrorMessage = "Standard Required!")]
         [StringLength(50, MinimumLength = 1)]
         [Display(Name = "Standard")]
-        public string standerd { get; set; }
+        public string standard { get; set; }
 
         [Required(ErrorMessage = "Mother Name Required!")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 5 to 50!")]
