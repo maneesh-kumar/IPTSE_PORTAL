@@ -6,7 +6,7 @@ namespace IPTSE_portal.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class IPTSE_Reg_table
+    public partial class IPTSE_Reg_table_New
     {
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -96,6 +96,16 @@ namespace IPTSE_portal.Models
         //[Column(TypeName = "numeric")]
         [Display(Name = "Mobile")]
         public string contact { get; set; }
+
+        [Required(ErrorMessage = "password Required!")]
+        [StringLength(50)]
+        [Display(Name = "Password")]
+        public string password { get; set; }
+
+        [Required(ErrorMessage = "confirm password required!")]
+        [StringLength(50)]
+        [Display(Name = "confirmPassword")]
+        public string confirmpassword { get; set; }
 
         [Required(ErrorMessage = "School Name Required!")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Must Beetween 5 to 50!")]

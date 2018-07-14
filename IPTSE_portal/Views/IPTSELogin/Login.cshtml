@@ -61,8 +61,8 @@
                             @*@Html.HiddenFor(m => m.ReturnUrl)*@
                             @Html.ValidationSummary(true, null, new { @style = "color: red;font-weight: bold;font-size: large" })
                             <div class="mid_loginmessage"> Enter your information below to log in</div><br />
-                            @Html.TextBoxFor(r => r.Id, new { @placeholder = "Id/Email-Id" })
-                            @Html.ValidationMessageFor(m => m.Id, string.Empty, new { @style = "color: red" })
+                            @Html.TextBoxFor(r => r.email, new { @placeholder = "Id/Email-Id" })
+                            @Html.ValidationMessageFor(m => m.email, string.Empty, new { @style = "color: red" })
                             @Html.PasswordFor(r => r.password, new { @placeholder = "Password" })
                             @Html.ValidationMessageFor(m => m.password, string.Empty, new { @style = "color: red" })
 

@@ -1,4 +1,4 @@
-﻿@model IPTSE_portal.Models.IPTSE_Reg_table
+﻿@model IPTSE_portal.Models.IPTSE_Reg_table_New
 
 @{
     ViewBag.Title = "Registration";
@@ -48,7 +48,8 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control input-sm", @readonly = "readonly", placeholder = "DOB MM/DD/YYY*" } })
+                                    @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control input-sm datefield", @readonly = "readonly", placeholder = "DOB:MM/DD/YYYY" } })
+
                                     @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
                                 </div>
                            </div>
@@ -111,9 +112,7 @@
                             </div>
                         </div>
 
-
-
-                        <div class="row">
+                       <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group">
                                     @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "City/District Name*", maxlength = 50 } })
@@ -163,8 +162,8 @@
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    @Html.PasswordFor(model => model.password,new { @class = "form-control input-sm", placeholder = "Confirm Password*", maxlength = 50 })
-                                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                    @Html.PasswordFor(model => model.confirmpassword, new { @class = "form-control input-sm", placeholder = "Confirm Password*", maxlength = 50 })
+                                    @Html.ValidationMessageFor(model => model.confirmpassword, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

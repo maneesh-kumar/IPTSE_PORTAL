@@ -23,10 +23,6 @@ namespace IPTSE_portal.Models
             modelBuilder.Entity<IPTSE_Reg_table>()
                 .Property(e => e.gender)
                 .IsFixedLength();
-
-            modelBuilder.Entity<IPTSE_Reg_table>()
-                .Property(e => e.contact)
-                .HasPrecision(18, 0);
         }
     }
 }

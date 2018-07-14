@@ -16,5 +16,7 @@ namespace IPTSE_portal.Models
         [StringLength(50, ErrorMessage = "Password should be minimum 5 characters", MinimumLength = 5)]
         [DataType(DataType.Password)]
         public string password { get; set; }
+
+        public string email { get; set; }
     }
 }

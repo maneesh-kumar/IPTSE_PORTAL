@@ -49,7 +49,7 @@ namespace IPTSE_portal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registration([Bind(Include = "Id,first_name,mid_name,last_name,gender,addr1,addr2,city,state,zipcode,country,contact,email,password,dob,schoolname,standerd,mothername,fathername,volunteername")] IPTSE_Reg_table iPTSE_Reg_table)
+        public ActionResult Registration([Bind(Include = "Id,first_name,mid_name,last_name,dob,gender,email,fathername,mothername,country,addr1,addr2,city,state,zipcode,contact,password,confirmpassword,schoolname,standard,volunteername")] IPTSE_Reg_table_New iPTSE_Reg_table)
         {
             if (ModelState.IsValid)
             {
@@ -57,56 +57,89 @@ namespace IPTSE_portal.Controllers
                 try
                 {
                     string clearText;
-
-                    db.IPTSE_Reg_table.Add(iPTSE_Reg_table);
-                    db.SaveChanges();
-                    //Session["id"] = iPTSE_Reg_table.Id;
-
-                    string EncryptionKey = "MAKV2SPBNI99212";
-                    byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(iPTSE_Reg_table.Id.ToString());
-                    using (Aes encryptor = Aes.Create())
-                    {
-                        Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                        encryptor.Key = pdb.GetBytes(32);
-                        encryptor.IV = pdb.GetBytes(16);
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
-                            {
-                                cs.Write(clearBytes, 0, clearBytes.Length);
-                                cs.Close();
-                            }
-                            clearText = Convert.ToBase64String(ms.ToArray());
-                        }
-                    }
                     
-                    string siteurl = "http://www.iptse.com/IPTSELogin/Createpassword";
-                    string smsg = "New Registration on our website, find your details below:\n";
-                    smsg += "Your account is not activated still, please activate it by clicking here: ";
-                    smsg +=  "<body><a href='"+siteurl + "?username;" + clearText+"'>Click here</a></body>" ;
-                    smsg += "\n Your User Id is: " + iPTSE_Reg_table.Id;
-                    try
+                    if (iPTSE_Reg_table.password != iPTSE_Reg_table.confirmpassword)
                     {
-                        System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-                        message.To.Add(new MailAddress(iPTSE_Reg_table.email));
-                        message.From = new MailAddress("admin@iptse.in");
-                        message.Subject = "Verification Mail";
-                        message.Body = smsg;
-                        message.IsBodyHtml = true;
-                        SmtpClient client = new SmtpClient();
-                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        client.Port = 80;
-                        client.Host = "smtpout.asia.secureserver.net";
-                        NetworkCredential nc = new NetworkCredential("admin@iptse.in", "Admi@iptse5");
-                        client.EnableSsl = false;
-                        client.UseDefaultCredentials = true;
-                        client.Credentials = nc;
-                        client.Send(message);
+
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        ViewBag.ErrorMessage = "Unable to send mail...";
-                        return View();
+                        IPTSE_Reg_table iPTSE_Reg_table_New = new IPTSE_Reg_table();
+                        iPTSE_Reg_table_New.Id = iPTSE_Reg_table.Id;
+                        iPTSE_Reg_table_New.first_name = iPTSE_Reg_table.first_name;
+                        iPTSE_Reg_table_New.mid_name = iPTSE_Reg_table.mid_name;
+                        iPTSE_Reg_table_New.last_name = iPTSE_Reg_table.last_name;
+                        iPTSE_Reg_table_New.dob= iPTSE_Reg_table.dob;
+                        iPTSE_Reg_table_New.gender = iPTSE_Reg_table.gender;
+                        iPTSE_Reg_table_New.email = iPTSE_Reg_table.email;
+                        iPTSE_Reg_table_New.fathername = iPTSE_Reg_table.fathername;
+                        iPTSE_Reg_table_New.mothername = iPTSE_Reg_table.mothername;
+                        iPTSE_Reg_table_New.country = iPTSE_Reg_table.country;
+                        iPTSE_Reg_table_New.addr1 = iPTSE_Reg_table.addr1;
+                        iPTSE_Reg_table_New.addr2 = iPTSE_Reg_table.addr2;
+                        iPTSE_Reg_table_New.city = iPTSE_Reg_table.city;
+                        iPTSE_Reg_table_New.state = iPTSE_Reg_table.state;
+                        iPTSE_Reg_table_New.zipcode = iPTSE_Reg_table.zipcode;
+                        iPTSE_Reg_table_New.contact = iPTSE_Reg_table.contact;
+                        iPTSE_Reg_table_New.schoolname = iPTSE_Reg_table.schoolname;
+                        iPTSE_Reg_table_New.standard = iPTSE_Reg_table.standard;
+                        iPTSE_Reg_table_New.volunteername = iPTSE_Reg_table.volunteername;
+                        db.IPTSE_Reg_table.Add(iPTSE_Reg_table_New);
+                        db.SaveChanges();
+                        var lstId = db.IPTSE_Reg_table.OrderByDescending(t => t.Id).Select(t1 => t1.Id).FirstOrDefault();
+                        login_table login_table = new login_table();
+                        login_table.Id = lstId;
+                        login_table.email = iPTSE_Reg_table.email;
+                        login_table.password = iPTSE_Reg_table.password;
+                        Createpassword(login_table);
+                        //Session["id"] = iPTSE_Reg_table.Id;
+
+                        string EncryptionKey = "MAKV2SPBNI99212";
+                        byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(iPTSE_Reg_table.Id.ToString());
+                        using (Aes encryptor = Aes.Create())
+                        {
+                            Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                            encryptor.Key = pdb.GetBytes(32);
+                            encryptor.IV = pdb.GetBytes(16);
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+                                using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                                {
+                                    cs.Write(clearBytes, 0, clearBytes.Length);
+                                    cs.Close();
+                                }
+                                clearText = Convert.ToBase64String(ms.ToArray());
+                            }
+                        }
+
+                        string siteurl = "http://www.iptse.com/IPTSELogin/Createpassword";
+                        string smsg = "New Registration on our website, find your details below:\n";
+                        smsg += "Your account is not activated still, please activate it by clicking here: ";
+                        smsg += "<body><a href='" + siteurl + "?username;" + clearText + "'>Click here</a></body>";
+                        smsg += "\n Your User Id is: " + iPTSE_Reg_table.Id;
+                        try
+                        {
+                            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+                            message.To.Add(new MailAddress(iPTSE_Reg_table.email));
+                            message.From = new MailAddress("admin@iptse.in");
+                            message.Subject = "Verification Mail";
+                            message.Body = smsg;
+                            message.IsBodyHtml = true;
+                            SmtpClient client = new SmtpClient();
+                            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                            client.Port = 80;
+                            client.Host = "smtpout.asia.secureserver.net";
+                            NetworkCredential nc = new NetworkCredential("admin@iptse.in", "Admi@iptse5");
+                            client.EnableSsl = false;
+                            client.UseDefaultCredentials = true;
+                            client.Credentials = nc;
+                            client.Send(message);
+                        }
+                        catch (Exception ex)
+                        {
+                            ViewBag.ErrorMessage = "Unable to send mail...";
+                            return View();
+                        }
                     }
                 }
                 catch(Exception ex1)
@@ -120,6 +153,67 @@ namespace IPTSE_portal.Controllers
                 
             }
             return View(iPTSE_Reg_table);
+        }
+        // GET: IPTSELogin/Create
+        public ActionResult Createpassword()
+        {
+            string url = HttpContext.Request.Url.AbsoluteUri;
+
+            string[] ar = url.Split(';');
+            string result;
+            string EncryptionKey = "MAKV2SPBNI99212";
+            ar[1] = ar[1].Replace(" ", "+");
+            byte[] cipherBytes = Convert.FromBase64String(ar[1]);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    result = System.Text.Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            Session["createpass"] = result.ToString();
+            return View();
+        }
+
+        // POST: IPTSELogin/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Createpassword(login_table login_table)
+        {
+            if (ModelState.IsValid)
+            {
+                //login_table.Id = Int32.Parse(Session["createpass"].ToString());
+                try
+                {
+                    login_table.Id = login_table.Id;
+                    login_table.email = login_table.email;
+                    byte[] encode = new byte[login_table.password.Length];
+                    encode = System.Text.Encoding.UTF8.GetBytes(login_table.password);
+                    login_table.password = Convert.ToBase64String(encode);
+                    db1.login_table.Add(login_table);
+                    db1.SaveChanges();
+                    //TempData["Message"] = "Password Created Successfully. Login To Continue..";
+                    return RedirectToAction("Login", "IPTSELogin");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = "Already Created! Please go through Forgot Password!";
+                    return View();
+                }
+
+            }
+
+            return View();
         }
 
         public ActionResult Successfull()

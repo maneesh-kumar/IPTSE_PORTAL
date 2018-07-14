@@ -114,9 +114,9 @@ namespace IPTSE_portal.Controllers
                 return RedirectToAction("Login", "IPTSELogin");
             }
             IPTSE_Reg_table iPTSE_Reg_Table = new IPTSE_Reg_table();
-            iPTSE_Reg_Table.Id = Decimal.Parse(Session["id"].ToString());
+            iPTSE_Reg_Table.Id = Int32.Parse(Session["id"].ToString());
             var obj = reg.IPTSE_Reg_table.Where(a => a.Id.Equals(iPTSE_Reg_Table.Id)).FirstOrDefault();
-            obj.contact = Int64.Parse(obj.contact.ToString());
+            obj.contact = obj.contact.ToString();
             return View(obj);
         }
 
