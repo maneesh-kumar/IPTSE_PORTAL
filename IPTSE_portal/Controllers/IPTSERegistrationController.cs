@@ -112,11 +112,9 @@ namespace IPTSE_portal.Controllers
                             }
                         }
 
-                        string siteurl = "http://www.iptse.com/IPTSELogin/Createpassword";
-                        string smsg = "New Registration on our website, find your details below:\n";
-                        smsg += "Your account is not activated still, please activate it by clicking here: ";
-                        smsg += "<body><a href='" + siteurl + "?username;" + clearText + "'>Click here</a></body>";
-                        smsg += "\n Your User Id is: " + iPTSE_Reg_table.Id;
+                        string siteurl = "http://portal.iptse.com/IPTSELogin/Createpassword";
+                        string smsg = "New Registration on our website.";
+                        smsg += "Your account is activated now, please login with your email-id.";
                         try
                         {
                             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
@@ -297,11 +295,9 @@ namespace IPTSE_portal.Controllers
                         }
                     }
 
-                    string siteurl = "http://www.iptse.com/IPTSELogin/Createpassword";
-                    string smsg = "New Registration on our website, find your details below:\n";
-                    smsg += "Your account is not activated still, please activate it by clicking here: ";
-                    smsg += "<body><a href='" + siteurl + "?username;" + clearText + "'>Click here</a></body>";
-                    smsg += "\n Your User Id is: " + obj.Id;
+                    string siteurl = "http://portal.iptse.com/IPTSELogin/Login";
+                    string smsg = "New Registration on our website.";
+                    smsg += "Your account is activated now, please login with your email-id.";
                     try
                     {
                         System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
