@@ -77,7 +77,7 @@ namespace IPTSE_portal.Controllers
                                     return RedirectToAction("Index", "Admin");
                                 }
                             }
-                            ViewBag.ErrorMessage = "Invalid Credencial........";
+                            ViewBag.ErrorMessage = "Invalid Credentials....";
                             return View();
                         }
 
@@ -100,7 +100,7 @@ namespace IPTSE_portal.Controllers
                                     return RedirectToAction("Index", "Admin");
                                 }
                             }
-                            ViewBag.ErrorMessage = "Invalid Credencial........";
+                            ViewBag.ErrorMessage = "Invalid Credentials....";
                             return View();
                         }
                     }

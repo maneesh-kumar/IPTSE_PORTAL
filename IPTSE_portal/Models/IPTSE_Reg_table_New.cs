@@ -102,7 +102,9 @@ namespace IPTSE_portal.Models
         [Display(Name = "Password")]
         public string password { get; set; }
 
-        [Required(ErrorMessage = "confirm password required!")]
+        [NotMapped]
+        [Required(ErrorMessage = "Confirm Password required")]
+        [CompareAttribute("password", ErrorMessage = "Confirm Password doesn't match.")]
         [StringLength(50)]
         [Display(Name = "confirmPassword")]
         public string confirmpassword { get; set; }

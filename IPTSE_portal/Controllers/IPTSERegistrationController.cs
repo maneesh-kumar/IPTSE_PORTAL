@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using IPTSE_portal.Models;
 using System.IO;
 using System.Security.Cryptography;
-
+using System.Web.UI;
 
 namespace IPTSE_portal.Controllers
 {
@@ -60,7 +60,7 @@ namespace IPTSE_portal.Controllers
                     
                     if (iPTSE_Reg_table.password != iPTSE_Reg_table.confirmpassword)
                     {
-
+                        return Content("<script language='javascript' type='text/javascript'>alert('Password and Confirm Password should be same!');</script>");
                     }
                     else
                     {
@@ -113,14 +113,14 @@ namespace IPTSE_portal.Controllers
                         }
 
                         string siteurl = "http://portal.iptse.com/IPTSELogin/Createpassword";
-                        string smsg = "New Registration on our website.";
-                        smsg += "Your account is activated now, please login with your email-id.";
+                        string smsg = "Dear User,<br/> Your Registration has been sucessfully done.";
+                        smsg += "<br/>Please login with your email-id.<br/> Thank you <br/> IPTSE Admin.";
                         try
                         {
                             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                             message.To.Add(new MailAddress(iPTSE_Reg_table.email));
                             message.From = new MailAddress("admin@iptse.in");
-                            message.Subject = "Verification Mail";
+                            message.Subject = "IPTSE Registration Confirmation Mail.";
                             message.Body = smsg;
                             message.IsBodyHtml = true;
                             SmtpClient client = new SmtpClient();
@@ -138,6 +138,8 @@ namespace IPTSE_portal.Controllers
                             ViewBag.ErrorMessage = "Unable to send mail...";
                             return View();
                         }
+                        ViewData["success_msg"] = "Congratulation! you have Registered Successfully.";
+                        return View("Successfull");
                     }
                 }
                 catch(Exception ex1)
@@ -145,10 +147,6 @@ namespace IPTSE_portal.Controllers
                     ViewBag.ErrorMessage = "Already Registered. if you are unable to login Please go through Forgot Password";
                     return View();
                 }
-                ViewData["success_msg"] = "Congratulation! you have Registered Successfully.";
-                ViewData["success_msg1"] = "Verification Mail has been sent to your registered Email-Id";
-                return View("Successfull");                
-                
             }
             return View(iPTSE_Reg_table);
         }
@@ -247,12 +245,13 @@ namespace IPTSE_portal.Controllers
                     string smsg = "Your User Id : " + obj.Id;
                     smsg += "\n Your Password : " + depass;
 
+
                     try
                     {
                         System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                         message.To.Add(new MailAddress(iPTSE_Reg_table.email));
                         message.From = new MailAddress("admin@iptse.in");
-                        message.Subject = "Verification Mail";
+                        message.Subject = "IPTSE Login Details";
                         message.Body = smsg;
                         //message.IsBodyHtml = true;
                         SmtpClient client = new SmtpClient();
@@ -271,7 +270,6 @@ namespace IPTSE_portal.Controllers
                         return View();
                     }
                     ViewData["success_msg"] = "Your Id and password has been sent to your registered mail id!";
-                    ViewData["success_msg1"] = "";
                     return View("Successfull");
                 }
                 else
@@ -323,7 +321,7 @@ namespace IPTSE_portal.Controllers
                     }
 
                     ViewData["success_msg"] = "You did not yet create password!";
-                    ViewData["success_msg1"] = "Verification Mail has been sent to your registered Email-Id";
+                    //ViewData["success_msg1"] = "Verification Mail has been sent to your registered Email-Id";
                     return View("Successfull");
                 }
                 
@@ -356,7 +354,7 @@ namespace IPTSE_portal.Controllers
         //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,first_name,mid_name,last_name,gender,addr1,addr2,city,state,zipcode,country,contact,email,dob,schoolname,standerd,mothername,fathername,volunteername")] IPTSE_Reg_table iPTSE_Reg_table)
+        //public ActionResult Edit([Bind(Include = "Id,first_name,mid_name,last_name,gender,addr1,addr2,city,state,zipcode,country,contact,email,dob,schoolname,standard,mothername,fathername,volunteername")] IPTSE_Reg_table iPTSE_Reg_table)
         //{
         //    if (ModelState.IsValid)
         //    {

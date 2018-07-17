@@ -54,7 +54,11 @@
                 <div class="col-lg-4 col-md-4"></div>
                 <div class="col-lg-8 col-md-8">
                     <div class="login_box">
-                        <center><div class="mid_logo"><img src="~/images/logo.png" width="100"/></div></center>
+                                   <center>
+                            <h4 style="color: #ff0000;" align="Center">@ViewBag.ErrorMessage</h4>
+                            <h4 style="color: #00ff21;" align="Center">@TempData["Message"]</h4>
+                        <br />
+                        <div class="mid_logo"><img src="~/images/logo.png" width="100"/></div></center>
                         @using (Html.BeginForm("Login", "IPTSELogin", FormMethod.Post, new { @id = "form_login" }))
                         {
                             @Html.AntiForgeryToken()
@@ -73,6 +77,7 @@
                             <br />
                             <div style="width:100%;"><div style="width:45%;float: left;"><a href="~/IPTSERegistration/ForgetPassword">Forget Password</a></div><div style="width:50%;float: right;"><a href="~/IPTSERegistration/Registration">Not Yet Registered?</a></div></div>
                         }
+                        
                         @*<div class="midNightLogo_BG"><img src="~/Images/logo.png" /></div>*@
                     </div>
                 </div>
