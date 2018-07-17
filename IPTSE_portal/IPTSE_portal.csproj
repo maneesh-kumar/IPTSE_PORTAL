@@ -180,6 +180,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IPTSE_Reg_table.cs" />
+    <Compile Include="Models\IPTSE_Reg_table_New.cs" />
     <Compile Include="Models\LoginDataModel.cs" />
     <Compile Include="Models\login_table.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -264,6 +265,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\cal.png" />
     <Content Include="Images\Cross.png" />
+    <Content Include="Images\dcc.jpg" />
     <Content Include="Images\excel.jpg" />
     <Content Include="Images\log.png" />
     <Content Include="Images\login_logo.png" />

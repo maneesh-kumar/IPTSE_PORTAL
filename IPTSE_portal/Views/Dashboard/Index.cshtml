@@ -4,91 +4,95 @@
     Layout = "~/Views/Shared/_ipse.cshtml";
 }
  <!-- Page Content -->
-<div id="page-wrapper" style="background-color:lemonchiffon">
+<div id="page-wrapper">
     <div class="container-fluid">
-        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-            <div class="row">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="#">
-                            <em class="fa fa-home"></em>
-                        </a>
-                    </li>
-                    <li class="active">Dashboard</li>
-                </ol>
-            </div><!--/.row-->
+        <!--<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">-->
+        <div class="col-lg-12">
+    <div class="row">
+        <ol class="breadcrumb" style="margin-top: 26px;">
+            <li>
+                <a href="#">
+                    <em class="fa fa-home"></em>
+                </a>
+            </li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </div><!--/.row-->
 
 
-            <div class="row">
+    <div class="row">
 
-                <div class="col-lg-8">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="text-align: center;">Hello! Welcome to IPTSE.</div>
-                        <div class="panel-body">
-                            <p style="line-height: 2; text-align: justify;">
-                                <b>Intellectual Property Talent Search Examination:</b><br>
-                                As technical change reshapes the world economy, intellectual property (IP) has grown in importance and taken on a central economic role. The increasing globalization of economic affairs and the increased knowledge intensity of economic activities have lead to the emergence of knowledge economy.
+        <div class="col-lg-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="text-align: center;">Hello! Welcome to IPTSE.</div>
+                <div class="panel-body">
+                    <p style="line-height: 2; text-align: justify;">
+                        <b>Intellectual Property Talent Search Examination</b><br>
+                        As technical change reshapes the world economy, intellectual property (IP) has grown in importance and taken on a central economic role. The increasing globalization of economic affairs and the increased knowledge intensity of economic activities have lead to the emergence of knowledge economy.
 
-                                ASSOCHAM and ERICSSON is jointly initiating Intellectual Property Talent Search Examination (IPTSE) to educate the intellectual property in India at school and college level.
+                        ASSOCHAM and ERICSSON is jointly initiating Intellectual Property Talent Search Examination (IPTSE) to educate the intellectual property in India at school and college level.
 
-                                The objective of the proposed Intellectual Property Talent Search Examination (IPTSE) is to help spread awareness on Intellectual Property and foster spirit of innovation and enterprise amongst India’s vast young talent pool. Besides, this initiative would help to identify and tap excellence in the realm of Patent, Copyright, and Trademark &amp; Design – collectively known as Intellectual Property (IP). The modus operandi would entail dissemination of online module on IP followed by an online exam targeted at class IX to XII school students and college students. Further, this exam is for UGs (Undergraduation).
-                            </p>
-                        </div>
-                    </div>
+                        The objective of the proposed Intellectual Property Talent Search Examination (IPTSE) is to help spread awareness on Intellectual Property and foster spirit of innovation and enterprise amongst India’s vast young talent pool. Besides, this initiative would help to identify and tap excellence in the realm of Patent, Copyright, and Trademark &amp; Design – collectively known as Intellectual Property (IP). The modus operandi would entail dissemination of online module on IP followed by an online exam targeted at class IX to XII school students and college students. Further, this exam is for UGs (Undergraduation).
+                    </p>
                 </div>
-
-                <div class="col-lg-4">
-                    <div class="panel panel-primary" style="height: 435px;">
-                        <div class="panel-heading" style="text-align: center;">Important Notice</div>
-                        <div class="panel-body">
-                            <p>
-                                <marquee direction="up" onmouseover="stop()" onmouseout="start()" scrollamount="5">
-                                    <ul style="color:brown; padding-top: 10px;">
-                                        <li>
-                                            We will intimate the Date soon for the Course Content!
-                                        </li>
-                                        <li>
-                                            Mock Test will start from 1st of August 2018.
-                                        </li>
-                                        <li>
-                                            Payment option is already active.
-                                        </li>
-                                    </ul>
-                                </marquee>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div style="padding-top: 100px; position:fixed;bottom:0px;width:100%">
-                    <div class="col-lg-12">
-                        <p style="color:red;"><marquee>Note: Without making payment. You can't access Course Content and Mock Test option. Thank You!</marquee></p>
-                        <!--<h1 class="page-header">Dashboard</h1>-->
-
-                    </div>
-                </div>
-                <script src="js/jquery-1.11.1.min.js"></script>
-                <script src="js/bootstrap.min.js"></script>
-                <script src="js/chart.min.js"></script>
-                <script src="js/chart-data.js"></script>
-                <script src="js/easypiechart.js"></script>
-                <script src="js/easypiechart-data.js"></script>
-                <script src="js/bootstrap-datepicker.js"></script>
-                <script src="js/custom.js"></script>
-                <script>
-                    window.onload = function () {
-                        var chart1 = document.getElementById("line-chart").getContext("2d");
-                        window.myLine = new Chart(chart1).Line(lineChartData, {
-                            responsive: true,
-                            scaleLineColor: "rgba(0,0,0,.2)",
-                            scaleGridLineColor: "rgba(0,0,0,.05)",
-                            scaleFontColor: "#c5c7cc"
-                        });
-                    };
-                </script>
-
-
             </div>
         </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="text-align: center;">Important Notice</div>
+                <div class="panel-body">
+                    <p>
+                        <marquee direction="up" onmouseover="stop()" onmouseout="start()" scrollamount="2" >
+                            <ul style="color:brown; padding-top: 10px;">
+                                <li>
+                                    Course Content is now available for download.
+                                </li>
+                                <li>
+                                    Mock Test will start from 1st of August 2018.
+                                </li>
+                                <li>
+                                    Payment option is already active.
+                                </li>
+                            </ul>
+                        </marquee>
+                    </p>
+
+                    <p><img src="~/Images/dcc.jpg" /></p>
+
+                </div>
+            </div>
+        </div>
+        <!--<div style="position:fixed;bottom:0px;width:100%">-->
+            <div class="col-lg-12" class="col-sm-12">
+                <p style="color:red;"><marquee onmouseover="stop()" onmouseout="start()" scrollamount="2" style="position: relative;">Note: Without making payment. You can't access Course Content and Mock Test option. Thank You!</marquee></p>
+                <!--<h1 class="page-header">Dashboard</h1>-->
+
+            </div>
+        
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <script src="js/chart-data.js"></script>
+        <script src="js/easypiechart.js"></script>
+        <script src="js/easypiechart-data.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/custom.js"></script>
+        <script>
+            window.onload = function () {
+                var chart1 = document.getElementById("line-chart").getContext("2d");
+                window.myLine = new Chart(chart1).Line(lineChartData, {
+                    responsive: true,
+                    scaleLineColor: "rgba(0,0,0,.2)",
+                    scaleGridLineColor: "rgba(0,0,0,.05)",
+                    scaleFontColor: "#c5c7cc"
+                });
+            };
+        </script>
+
+
+    </div>
+</div>
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->

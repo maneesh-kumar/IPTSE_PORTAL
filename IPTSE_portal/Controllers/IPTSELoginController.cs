@@ -69,9 +69,9 @@ namespace IPTSE_portal.Controllers
                         else
                         {
 
-                            if (login_table.Id == Decimal.Parse("91620195"))
+                            if (loginId == Decimal.Parse("91620195"))
                             {
-                                if (login_table.password == "SVBUU0VfQURNSU5fTE9HSU4=")
+                                if (login_table.password == "YWJjQDEyMw==") //"SVBUU0VfQURNSU5fTE9HSU4 =")
                                 {
                                     Session["admin_login"] = "91620195";
                                     return RedirectToAction("Index", "Admin");
@@ -87,7 +87,7 @@ namespace IPTSE_portal.Controllers
                         var obj1 = db.login_table.Where(a => a.email.Equals(login_table.email) && a.password.Equals(login_table.password)).FirstOrDefault();
                         if (obj1 != null)
                         {
-                            Session["id"] = obj1.email.ToString();
+                            Session["id"] = obj1.Id.ToString();
                             return RedirectToAction("Index", "Dashboard");
                         }
                         else
