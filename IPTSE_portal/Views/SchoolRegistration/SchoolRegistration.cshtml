@@ -1,0 +1,234 @@
+﻿@model IPTSE_portal.BLL.Models.SchoolRegistrationModel
+@{
+    ViewBag.Title = "SchoolRegistration";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h3 style="text-align:center;">Registration Form</h3>
+@using (Html.BeginForm("SchoolRegistration", "SchoolRegistration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-7">
+            <h4 style="color: #ff0000;" align="Center">@ViewBag.ErrorMessage</h4>
+        </div>
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">School / College  Details</h3>
+                </div>
+                  <div class="panel-body">
+                      <form role="form">
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.institution_name, new { id = "institution_name", @class = "form-control input-sm", placeholder = "School / College Name*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.institution_name, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.principal_director_name, new { id = "Principal_name", @class = "form-control input-sm", placeholder = "Principal Name*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.principal_director_name, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.branch_name, new { id = "branch_name", @class = "form-control input-sm", placeholder = "Branch Name (if any)", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.branch_name, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.DropDownListFor(m => m.institution_type, new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="----Select Institution Type----",  },
+                                                new SelectListItem{ Text="School", Value = "School" },
+                                                new SelectListItem{ Text="College", Value = "College" }
+                                            }, new { id = "ddlSchoolType", @class = "form-control input-sm", })
+                                      @Html.ValidationMessageFor(model => model.institution_type, "", new { @class = "text-danger", maxlength = 10 })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.addr1, new { id = "Address1", @class = "form-control input-sm", placeholder = "Address Line1", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.addr1, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.addr2, new { id = "Address2", @class = "form-control input-sm", placeholder = "Address Line2", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.addr2, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.city, new { id = "City", @class = "form-control input-sm", placeholder = "City / District Name*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.city, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.DropDownListFor(m => m.state, new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="----Select State----",  },
+                                                new SelectListItem{ Text="Andhra Pradesh", Value = "Andhra Pradesh" },
+                                                new SelectListItem{ Text="Arunachal Pradesh", Value = "Arunachal Pradesh" },
+                                                new SelectListItem{ Text="Assam", Value = "Assam" },
+                                                new SelectListItem{ Text="Bihar", Value = "Bihar" },
+                                                new SelectListItem{ Text="Chhattisgarh", Value = "Chhattisgarh" },
+                                                new SelectListItem{ Text="Delhi", Value = "Delhi" },
+                                                new SelectListItem{ Text="Goa", Value = "Goa" },
+                                                new SelectListItem{ Text="Gujarat", Value = "Gujarat" },
+                                                new SelectListItem{ Text="Haryana", Value = "Haryana" },
+                                                new SelectListItem{ Text="Himachal Pradesh", Value = "Himachal Pradesh" },
+                                                new SelectListItem{ Text="Jammu and Kashmir", Value = "Jammu and Kashmir" },
+                                                new SelectListItem{ Text="Jharkhand", Value = "Jharkhand" },
+                                                new SelectListItem{ Text="Karnataka", Value = "Karnataka" },
+                                                new SelectListItem{ Text="Kerala", Value = "Kerala" },
+                                                new SelectListItem{ Text="Madhya Pradesh", Value = "Madhya Pradesh" },
+                                                new SelectListItem{ Text="Maharashtra", Value = "Maharashtra" },
+                                                new SelectListItem{ Text="Manipur", Value = "Manipur" },
+                                                new SelectListItem{ Text="Meghalaya", Value = "Meghalaya" },
+                                                new SelectListItem{ Text="Mizoram", Value = "Mizoram" },
+                                                new SelectListItem{ Text="Nagaland", Value = "Nagaland" },
+                                                new SelectListItem{ Text="Odisha", Value = "Odisha" },
+                                                new SelectListItem{ Text="Punjab", Value = "Punjab" },
+                                                new SelectListItem{ Text="Rajasthan", Value = "Rajasthan" },
+                                                new SelectListItem{ Text="Sikkim", Value = "Sikkim" },
+                                                new SelectListItem{ Text="Tamil Nadu", Value = "Tamil Nadu" },
+                                                new SelectListItem{ Text="Telangana", Value = "Telangana" },
+                                                new SelectListItem{ Text="Tripura", Value = "Tripura" },
+                                                new SelectListItem{ Text="Uttar Pradesh", Value = "Uttar Pradesh" },
+                                                new SelectListItem{ Text="Uttarakhand", Value = "Uttarakhand" },
+                                                new SelectListItem{ Text="West Bengal", Value = "West Bengal" }
+                                            }, new { id = "ddlState", @class = "form-control input-sm", })
+                                      @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger", maxlength = 10 })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.zipcode, new { id = "Zip", @class = "form-control input-sm", placeholder = "Pin Code*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.zipcode, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.country, new { id = "Country", @class = "form-control input-sm", placeholder = "Country*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.country, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.institution_contact, new { id = "InstitutionContact", @class = "form-control input-sm", placeholder = "School Contact No.*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.institution_contact, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.institution_email, new { id = "InstitutionEmail", @class = "form-control input-sm", placeholder = "School Email-ID*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.institution_email, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.contact_person_name, new { id = "ContactName", @class = "form-control input-sm", placeholder = "Contact Person Name*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.contact_person_name, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.contact_person_contact, new { id = "ContactPhone", @class = "form-control input-sm", placeholder = "Contact Person Mobile No.*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.contact_person_contact, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.contact_person_email, new { id = "ContactEmail", @class = "form-control input-sm", placeholder = "Contact Person Email-ID*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.contact_person_email, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="panel panel-default">
+                              <div class="panel-heading">
+                                  <h3 class="panel-title">Login Details</h3>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-4 col-md-4">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.institution_email, new { id = "userId", @class = "form-control input-sm", placeholder = "User ID / Email-ID*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.institution_email, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+
+
+                              <div class="col-xs-12 col-sm-4 col-md-4">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.Password, new { id = "password", @class = "form-control input-sm", placeholder = "Password*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-4 col-md-4">
+                                  <div class="form-group">
+                                      @Html.TextBoxFor(m => m.ConfirmPassword, new { id = "confirmpassword", @class = "form-control input-sm", placeholder = "Confirm Password*", maxlength = 50 })
+                                      @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      @Html.DropDownListFor(m => m.information_source, new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="----Where did you hear about us?----",  },
+                                                new SelectListItem{ Text="Website", Value = "Website" },
+                                                new SelectListItem{ Text="Television", Value = "Television" },
+                                                 new SelectListItem{ Text="NewsPaper", Value = "NewsPaper" },
+                                                  new SelectListItem{ Text="Social Media", Value = "Social Media" }
+                                            }, new { id = "ddlInfoType", @class = "form-control input-sm", })
+                                      @Html.ValidationMessageFor(model => model.information_source, "", new { @class = "text-danger", maxlength = 10 })
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-6 col-sm-2 text-center col-md-2 text-center">
+                                  <div class="form-group">
+                                      <input type="submit" value="Register" class="btn btn-info btn-block">
+                                  </div>
+                              </div>
+
+                              <div class="col-xs-6 col-sm-2 text-center col-md-2 text-center">
+                                  <div class="form-group">
+                                      <input type="Submit" value="clear" class="btn btn-info btn-block">
+                                  </div>
+                              </div>
+                          </div>
+                          </form>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+}

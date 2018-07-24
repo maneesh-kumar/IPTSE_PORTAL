@@ -29,5 +29,7 @@ namespace IPTSE_portal.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<IPTSE_portal.BLL.Models.SchoolRegistrationModel> SchoolRegistrationModels { get; set; }
     }
 }
