@@ -3,6 +3,14 @@
     ViewBag.Title = "SchoolRegistration";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<script>
+    $(function () {
+        $('#InstitutionEmail').blur(function () {
+            $('#userId').val($('#InstitutionEmail').val());
+            //alert('test');
+        });
+    });
+</script>
 <h3 style="text-align:center;">Registration Form</h3>
 @using (Html.BeginForm("SchoolRegistration", "SchoolRegistration", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -177,7 +185,7 @@
                           <div class="row">
                               <div class="col-xs-12 col-sm-4 col-md-4">
                                   <div class="form-group">
-                                      @Html.TextBoxFor(m => m.institution_email, new { id = "userId", @class = "form-control input-sm", placeholder = "User ID / Email-ID*", maxlength = 50 })
+                                      @Html.TextBoxFor(m => m.institution_email, new { id = "userId", @class = "form-control input-sm", @readonly = "readonly", @disabled = "disabled", placeholder = "User ID / Email-ID*", maxlength = 50 })
                                       @Html.ValidationMessageFor(m => m.institution_email, "", new { @class = "text-danger" })
                                   </div>
                               </div>
