@@ -55,6 +55,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SchoolRegistrationModel.cs" />
+    <Compile Include="SchoolRegistrationBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IPTSE_portal.DAL\IPTSE_portal.DAL.csproj">

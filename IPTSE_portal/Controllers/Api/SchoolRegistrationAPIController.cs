@@ -57,8 +57,15 @@ namespace IPTSE_portal.Controllers.Api
             try
             {
                 SchoolRegistrationBLL _objSchoolRegistration = new SchoolRegistrationBLL();
-                _objSchoolRegistration.InsertSchool(schoolModel);
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Not Found!");
+                var insertedRecord=_objSchoolRegistration.InsertSchool(schoolModel);
+                if (insertedRecord == null || insertedRecord==0)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "School Not Created!");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, insertedRecord);
+                }
             }
             catch (SecurityException ex)
             {

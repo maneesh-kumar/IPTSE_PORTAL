@@ -87,13 +87,13 @@ namespace IPTSE_portal.Models
         public string state { get; set; }
 
         [Required(ErrorMessage = "Zip Code Required!")]
-        //[RegularExpression(@"^(?!00000)[0-9]{5,5}$", ErrorMessage = "Zip code is invalid.")] // US or Canada
+        [RegularExpression(@"^(?!00000)[0-9]{5,5}$", ErrorMessage = "Zip code is invalid.")] // US or Canada
         [StringLength(10)]
         public string zipcode { get; set; }
 
         [Required(ErrorMessage = "Contact Required!")]
-        //[RegularExpression(@"^(?!00000)[0-9]{10,10}$", ErrorMessage = "Invalid Contact!")]
-        //[Column(TypeName = "numeric")]
+        [RegularExpression(@"^(?!00000)[0-9]{10,10}$", ErrorMessage = "Invalid Contact!")]
+        [Column(TypeName = "numeric")]
         [Display(Name = "Mobile")]
         public string contact { get; set; }
 

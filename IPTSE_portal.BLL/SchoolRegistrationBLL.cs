@@ -10,10 +10,11 @@ namespace IPTSE_portal.BLL
 {
     public class SchoolRegistrationBLL
     {
-        public void InsertSchool(SchoolRegistrationModel schoolRegistrationModel)
+        public decimal InsertSchool(SchoolRegistrationModel schoolRegistrationModel)
         {
             IPTSE_School_Reg_table _schoolRegistration = new IPTSE_School_Reg_table();
             login_table _objLoginTable = new login_table();
+            decimal newIdentityValue=0;
             using (var objContext = new IPTSEDBEntities())
             {
                 using (var dbcxtransaction = objContext.Database.BeginTransaction())
@@ -41,17 +42,21 @@ namespace IPTSE_portal.BLL
                         _schoolRegistration.Updated_Date = DateTime.Now;
                         objContext.IPTSE_School_Reg_table.Add(_schoolRegistration);
                         objContext.SaveChanges();
-                        decimal newIdentityValue = objContext.IPTSE_School_Reg_table.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id);
+                        newIdentityValue = objContext.IPTSE_School_Reg_table.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id);
                         _objLoginTable.Id = newIdentityValue;
-                        _objLoginTable.password = schoolRegistrationModel.Password;
+                        byte[] encode = new byte[schoolRegistrationModel.password.Length];
+                        encode = System.Text.Encoding.UTF8.GetBytes(schoolRegistrationModel.password);
+                        _objLoginTable.password = Convert.ToBase64String(encode);
                         _objLoginTable.Email = schoolRegistrationModel.institution_email;
                         objContext.login_table.Add(_objLoginTable);
                         objContext.SaveChanges();
                         dbcxtransaction.Commit();
+                        return newIdentityValue;
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         dbcxtransaction.Rollback();
+                        return newIdentityValue;
                     }
                 }
             }
