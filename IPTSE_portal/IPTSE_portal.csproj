@@ -181,7 +181,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\Api\SchoolRegistrationController.cs" />
+    <Compile Include="Controllers\Api\SchoolRegistrationAPIController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\IPTSELoginController.cs" />
     <Compile Include="Controllers\IPTSERegistrationController.cs" />
