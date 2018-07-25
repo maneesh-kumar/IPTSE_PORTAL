@@ -64,10 +64,10 @@ namespace IPTSE_portal.Controllers
                         if (obj != null)
                         {
                             Session["id"] = obj.Id.ToString();
-                            obj.LastLoginDateTime = DateTime.Now;
-                            db.login_table.Attach(obj);
-                            db.Entry(login_table).Property(x => x.LastLoginDateTime).IsModified = true;
-                            db.SaveChanges();
+                            //obj.LastLoginDateTime = DateTime.Now;
+                            //db.login_table.Attach(obj);
+                            //db.Entry(login_table).State = EntityState.Modified;
+                            //db.SaveChanges();
                             return RedirectToAction("Index", "Dashboard");
                         }
                         else
@@ -78,10 +78,10 @@ namespace IPTSE_portal.Controllers
                                 if (login_table.password == "YWJjQDEyMw==") //"SVBUU0VfQURNSU5fTE9HSU4 =")
                                 {
                                     Session["admin_login"] = "91620195";
-                                    obj.LastLoginDateTime = DateTime.Now;
-                                    db.login_table.Attach(obj);
-                                    db.Entry(login_table).Property(x => x.LastLoginDateTime).IsModified = true;
-                                    db.SaveChanges();
+                                    //obj.LastLoginDateTime = DateTime.Now;
+                                    //db.login_table.Attach(obj);
+                                    //db.Entry(login_table).State = EntityState.Modified;
+                                    //db.SaveChanges();
                                     return RedirectToAction("Index", "Admin");
                                 }
                             }
@@ -97,9 +97,11 @@ namespace IPTSE_portal.Controllers
                         {
                             Session["id"] = obj1.Id.ToString();
                             obj1.LastLoginDateTime = DateTime.Now;
-                            db.login_table.Attach(obj1);
-                            db.Entry(login_table).Property(x => x.LastLoginDateTime).IsModified = true;
-                            db.SaveChanges();
+                            //db.login_table.Add(obj1);
+                            //// db.Entry(login_table).State = EntityState.Modified;
+                            ////db.Entry(login_table).Property(x => x.LastLoginDateTime).IsModified = true;
+                            //db.Entry(obj1).State = System.Data.Entity.EntityState.Modified;
+                            //db.SaveChanges();
                             return RedirectToAction("Index", "Dashboard");
                         }
                         else
@@ -109,10 +111,10 @@ namespace IPTSE_portal.Controllers
                                 if (login_table.password == "SVBUU0VfQURNSU5fTE9HSU4=")
                                 {
                                     Session["admin_login"] = "91620195";
-                                    obj1.LastLoginDateTime = DateTime.Now;
-                                    db.login_table.Attach(obj1);
-                                    db.Entry(login_table).Property(x => x.LastLoginDateTime).IsModified = true;
-                                    db.SaveChanges();
+                                    //obj1.LastLoginDateTime = DateTime.Now;
+                                    //db.login_table.Attach(obj1);
+                                    //db.Entry(login_table).State = EntityState.Modified;
+                                    //db.SaveChanges();
                                     return RedirectToAction("Index", "Admin");
                                 }
                             }
