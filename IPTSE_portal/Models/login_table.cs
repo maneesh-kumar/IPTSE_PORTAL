@@ -21,5 +21,6 @@ namespace IPTSE_portal.Models
         public string email { get; set; }
 
         public DateTime? LastLoginDateTime { get; set; }
+        public string Login_type { get; set; }
     }
 }

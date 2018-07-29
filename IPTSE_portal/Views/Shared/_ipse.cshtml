@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
-
+@model IPTSE_portal.Models.login_table
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <!-- Bootstrap Core CSS -->
-   
+
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
     <!-- MetisMenu CSS -->
@@ -61,6 +61,7 @@
                     <li>
                         <a href="~/Dashboard/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
+
                 </ul>
             </li>
         </ul>
@@ -80,17 +81,31 @@
                         <a href="~/Dashboard/Index" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
-                    <li>
-                        <a href="~/Dashboard/content"><i class="fa fa-table fa-fw"></i> Course Content</a>
-                    </li>
-                    <li>
-                        <a href="~/Dashboard/mocktest"><i class="fa fa-edit fa-fw"></i> Mock Test</a>
-                    </li>
+                    @if (Session["Type"] != null && Session["Type"].ToString() == "Institution")
+                    {
 
-                    <li>
-                        <a href="~/Dashboard/payment"><i class="fa fa-money fa-fw"></i> Pay Online</a>
-                    </li>
-
+                        <li>
+                            <a href="~/Dashboard/Setting"><i class="fa fa-table fa-fw"></i> Upload Student Details</a>
+                        </li>
+                        <li>
+                            <a href="~/Dashboard/Setting"><i class="fa fa-money fa-fw"></i> Payment for uploaded students</a>
+                        </li>
+                        <li>
+                            <a href="~/Dashboard/Setting"><i class="fa fa-edit fa-fw"></i> Registration & Payment Report</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="~/Dashboard/content"><i class="fa fa-table fa-fw"></i> Course Content</a>
+                        </li>
+                        <li>
+                            <a href="~/Dashboard/mocktest"><i class="fa fa-edit fa-fw"></i> Mock Test</a>
+                        </li>
+                        <li>
+                            <a href="~/Dashboard/payment"><i class="fa fa-money fa-fw"></i> Pay Online</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

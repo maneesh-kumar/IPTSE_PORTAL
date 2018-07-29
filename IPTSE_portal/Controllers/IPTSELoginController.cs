@@ -64,6 +64,7 @@ namespace IPTSE_portal.Controllers
                         if (obj != null)
                         {
                             Session["id"] = obj.Id.ToString();
+                            Session["Type"] = obj.Login_type;
                             //obj.LastLoginDateTime = DateTime.Now;
                             //db.login_table.Attach(obj);
                             //db.Entry(login_table).State = EntityState.Modified;
@@ -96,6 +97,7 @@ namespace IPTSE_portal.Controllers
                         if (obj1 != null)
                         {
                             Session["id"] = obj1.Id.ToString();
+                            Session["Type"] = obj1.Login_type;
                             obj1.LastLoginDateTime = DateTime.Now;
                             //db.login_table.Add(obj1);
                             //// db.Entry(login_table).State = EntityState.Modified;
