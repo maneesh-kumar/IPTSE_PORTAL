@@ -26,32 +26,37 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <img src="~/Content/themes/base/images/logo.png" height="50" width="50" />
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="~/Admin/Index">Intellectual Property Talent Search Examination(Admin View)</a>
-        </div>
+    <div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <img src="~/Content/themes/base/images/logo.png" height="50" width="50" />
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="~/Admin/Index">Intellectual Property Talent Search Examination(Admin View)</a>
+            </div>
 
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-
-
-
-        <ul class="nav navbar-right navbar-top-links">
-            @*@Html.ActionLink("IPTSE - Admin View", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })*@
-           <li><a href="~/Dashboard/logout"><img src="~/Content/themes/base/images/log.png" style="height:30px;width:30px;" /></a></li>
-
-        </ul>
-        <!-- /.navbar-top-links -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
 
-    </nav>
+
+            <ul class="nav navbar-right navbar-top-links">
+                @*@Html.ActionLink("IPTSE - Admin View", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })*@
+                <li><a href="~/Dashboard/logout"><img src="~/Content/themes/base/images/log.png" style="height:30px;width:30px;" /></a></li>
+
+            </ul>
+            <!-- /.navbar-top-links -->
+
+
+        </nav>
+    </div>
+    <br />
+    <br/>
+    <br/>
     <div>
         @RenderBody()
     </div>
@@ -65,6 +70,11 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="~/Scripts/startmin.js"></script>
+
+    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css" />
+
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"></script>
+
 </body>
 
 </html>

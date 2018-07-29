@@ -1,157 +1,123 @@
-﻿@model IEnumerable<IPTSE_portal.Models.IPTSE_Reg_table>
+﻿@using IPTSE_portal.Models;
+@using System.Linq;
+
+@{
+    List<IPTSE_Reg_table> reg_Table = ViewData["RegTable"] as List<IPTSE_Reg_table>;
+    List<payment_details> payment_Details = ViewData["PaymentTable"] as List<payment_details>;
+}
+
+@using GridMvc.Html
+@using GridMvc.Sorting
+@using GridMvc.Pagination
 
 @{
     ViewBag.Title = "Registration List";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; ;
 }
 
-@using (Html.BeginForm())
+
+@Html.AntiForgeryToken()
+
+
+<div class="body-content" style="margin: 10px; border:solid; border-width:thick">
+
+    <h2>Registration Details</h2>
+
+    @*@Html.Grid(Model).AutoGenerateColumns().Sortable().Filterable().WithPaging(6)*@
+
+    @helper CustomRenderingOfColumn(IPTSE_Reg_table table, List<payment_details> details)
+    {
+        var isPayDone = details.Count((c) => c.Id == table.Id);
+        ViewData["Payment"] = isPayDone;
+        if (isPayDone > 0)
+        {
+            <text>Yes</text>
+        }
+        else
+        {
+            <text>No</text>
+        }
+    }
+
+    @functions
+    {
+        public int CustomValueOfColumn(IPTSE_Reg_table table, List<payment_details> details)
+        {
+            return details.Count((c) => c.Id == table.Id);
+        }
+    }
+
+    @Html.Grid(@reg_Table).Columns(columns =>
 {
-    @Html.AntiForgeryToken()
 
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <br /><br />
-                    <h1 class="page-header">Registration List</h1>
+    columns.Add(c => c.Id).Titled("ID")
+            .Filterable(true)
+            .SetWidth(20)
+            .SortInitialDirection(GridSortDirection.Descending)
+            .Sortable(true);
 
-                    <table class="table" width="100%">
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Id)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.first_name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.mid_name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.last_name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.gender)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.addr1)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.addr2)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.city)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.state)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.zipcode)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.country)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.contact)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.email)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.dob)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.schoolname)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.standard)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.mothername)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.fathername)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.volunteername)
-                            </th>
-                            <th></th>
-                        </tr>
+    columns.Add()
+            .Titled("Payment")
+            .Filterable(true)
+            .SetWidth(20)
+            .Sortable(true)
+            .RenderValueAs(c => CustomRenderingOfColumn(c, payment_Details));
 
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.first_name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.mid_name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.last_name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.gender)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.addr1)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.addr2)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.city)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.state)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.zipcode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.country)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.contact)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.dob)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.schoolname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.standard)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.mothername)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fathername)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.volunteername)
-                            </td>
-                            <td>
+    columns.Add(c => c.first_name)
+            .Titled("First Name")
+            .SetWidth(100)
+            .Sortable(true);
 
-                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+    columns.Add(c => c.last_name)
+            .Titled("Last Name")
+            .SetWidth(100)
+            .Sortable(true);
 
-                            </td>
-                        </tr>
-                        }
+    columns.Add(c => c.email)
+            .Titled("Email")
+            .SetWidth(100)
+            .Sortable(true);
 
-                    </table>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-}
+    columns.Add(c => c.fathername)
+            .Titled("Father Name")
+            .SetWidth(100)
+            .Sortable(true);
+
+    columns.Add(c => c.city)
+            .Titled("City")
+            .SetWidth(110)
+            .Sortable(true);
+    //.RenderValueAs(c => Convert.ToDateTime(c.PriceDate).ToString("d"));
+
+    columns.Add(c => c.state)
+            .Titled("State")
+            .SetWidth(110)
+            .Sortable(true);
+
+    //columns.Add(c => c.frequency.Name)
+    //        .Titled("Frequency")
+    //        .SetWidth(110)
+    //        .Sortable(true);
+
+    //columns.Add()
+    //        .Titled("")
+    //        .SetWidth(10)
+    //        .Filterable(true)
+    //        .Sanitized(false)
+    //        .Encoded(false)
+    //        .RenderValueAs(c => Html.ActionLink("Edit", "Edit", "Grocery", new { id = c.ID }, null)
+    //        .ToHtmlString());
+
+    columns.Add()
+            .Titled("")
+            .SetWidth(10)
+            .Filterable(true)
+            .Sanitized(false)
+            .Encoded(false)
+            .RenderValueAs(c => Html.ActionLink("Details", "Details", "Admin", new { id = c.Id }, null)
+            .ToHtmlString());
+}).SetRowCssClasses(c => @CustomValueOfColumn(c, payment_Details) == 0 ? "warning" : string.Empty).WithPaging(10).Sortable().Filterable()
+
+
+    <br />
+</div>

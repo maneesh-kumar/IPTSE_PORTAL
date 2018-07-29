@@ -8,23 +8,35 @@ using System.Web.Mvc;
 
 namespace IPTSE_portal.Controllers
 {
-    
+
     public class AdminController : Controller
     {
         private RegistrationDataModel db = new RegistrationDataModel();
+        private PaymentDataModel paymentDb = new PaymentDataModel();
         // GET: Admin
         public ActionResult Index()
         {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("Login", "IPTSELogin");
+            }
             return View();
         }
 
         public ActionResult RegistrationList()
         {
-            return View(db.IPTSE_Reg_table.ToList());
+            ViewData["RegTable"] = db.IPTSE_Reg_table.ToList();
+            ViewData["PaymentTable"] = paymentDb.payment_details.ToList();
+            return View();
         }
 
         public ActionResult Details(decimal id)
         {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("Login", "IPTSELogin");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -35,6 +47,7 @@ namespace IPTSE_portal.Controllers
                 return HttpNotFound();
             }
             return View(iPTSE_Reg_table);
+
         }
     }
 }

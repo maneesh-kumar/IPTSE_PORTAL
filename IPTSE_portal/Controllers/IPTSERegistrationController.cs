@@ -53,11 +53,11 @@ namespace IPTSE_portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 try
                 {
                     string clearText;
-                    
+
                     if (iPTSE_Reg_table.password != iPTSE_Reg_table.confirmpassword)
                     {
                         return Content("<script language='javascript' type='text/javascript'>alert('Password and Confirm Password should be same!');</script>");
@@ -69,7 +69,7 @@ namespace IPTSE_portal.Controllers
                         iPTSE_Reg_table_New.first_name = iPTSE_Reg_table.first_name;
                         iPTSE_Reg_table_New.mid_name = iPTSE_Reg_table.mid_name;
                         iPTSE_Reg_table_New.last_name = iPTSE_Reg_table.last_name;
-                        iPTSE_Reg_table_New.dob= iPTSE_Reg_table.dob;
+                        iPTSE_Reg_table_New.dob = iPTSE_Reg_table.dob;
                         iPTSE_Reg_table_New.gender = iPTSE_Reg_table.gender;
                         iPTSE_Reg_table_New.email = iPTSE_Reg_table.email;
                         iPTSE_Reg_table_New.fathername = iPTSE_Reg_table.fathername;
@@ -142,7 +142,24 @@ namespace IPTSE_portal.Controllers
                         return View("Successfull");
                     }
                 }
-                catch(Exception ex1)
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting  
+                            // the current instance as InnerException  
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
+                catch (Exception ex1)
                 {
                     ViewBag.ErrorMessage = "Already Registered. if you are unable to login Please go through Forgot Password";
                     return View();
@@ -232,7 +249,7 @@ namespace IPTSE_portal.Controllers
             {
                 login_table login_Table = new login_table();
                 var obj1 = db1.login_table.Where(a => a.Id.Equals(obj.Id)).FirstOrDefault();
-                if(obj1!=null)
+                if (obj1 != null)
                 {
                     System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
                     System.Text.Decoder strDecoder = encoder.GetDecoder();
@@ -324,14 +341,14 @@ namespace IPTSE_portal.Controllers
                     //ViewData["success_msg1"] = "Verification Mail has been sent to your registered Email-Id";
                     return View("Successfull");
                 }
-                
+
             }
             else
             {
                 ViewBag.ErrorMessage = "Email id is not Registered.";
                 return View();
             }
-            
+
         }
 
         //// GET: IPTSERegistration/Edit/5

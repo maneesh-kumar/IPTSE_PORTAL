@@ -15,7 +15,7 @@ namespace IPTSE_portal.Models
 
         [Display(Name = "First Name")]
         [Required( ErrorMessage = "First Name Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"^[a-zA-Z][a-zA-Z\\s]+$", ErrorMessage = "Invalid First Name!")]
         public string first_name { get; set; }
 
@@ -24,7 +24,7 @@ namespace IPTSE_portal.Models
         public string mid_name { get; set; }
 
         [Required(ErrorMessage = "Last Name Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"^[a-zA-Z][a-zA-Z\\s]+$", ErrorMessage = "Invalid Last Name!")]
         [Display(Name = "Last Name")]
         public string last_name { get; set; }
@@ -46,25 +46,25 @@ namespace IPTSE_portal.Models
         public string email { get; set; }
 
         [Required(ErrorMessage = "Father Name Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"([a-z]|[A-Z]|[ ])*", ErrorMessage = "Invalid Father's Name!")]
         [Display(Name = "Father's Name")]
         public string fathername { get; set; }
 
         [Required(ErrorMessage = "Mother Name Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"([a-z]|[A-Z]|[ ])*", ErrorMessage = "Invalid Mother's Name!")]
         [Display(Name = "Mother's Name")]
         public string mothername { get; set; }
 
         [Required(ErrorMessage = "Country Name Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"([a-z]|[A-Z]|[ ])*", ErrorMessage = "Invalid Country Name!")]
         [Display(Name = "Country")]
         public string country { get; set; }
 
         [Required(ErrorMessage = "Address Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"([a-z]|[A-Z]|[0-9]|[ ]|[-]|[_]|[/]|[:]|[,]|[(]|[)]|[.])*", ErrorMessage = "Invalid Characters!")]
         [Display(Name = "Address")]
         public string addr1 { get; set; }
@@ -75,13 +75,13 @@ namespace IPTSE_portal.Models
         public string addr2 { get; set; }
 
         [Required(ErrorMessage = "City Name Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"([a-z]|[A-Z]|[ ])*", ErrorMessage = "Invalid City Name!")]
         [Display(Name = "City")]
         public string city { get; set; }
 
         [Required(ErrorMessage = "State Name Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"([a-z]|[A-Z]|[ ])*", ErrorMessage = "Invalid State Name!")]
         [Display(Name = "State")]
         public string state { get; set; }
@@ -98,7 +98,7 @@ namespace IPTSE_portal.Models
         public string contact { get; set; }
 
         [Required(ErrorMessage = "School Name Required!")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Must Between 3 to 50!")]
         [RegularExpression(@"([a-z]|[A-Z]|[ ])*", ErrorMessage = "Invalid School Name!")]
         [Display(Name = "School Name")]
         public string schoolname { get; set; }
@@ -109,7 +109,7 @@ namespace IPTSE_portal.Models
         public string standard { get; set; }
         
         [Required(ErrorMessage = "Your Aswer Required!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Beetween 3 to 50!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Must Between 3 to 50!")]
         //[RegularExpression(@"([a-z]|[A-Z]|[ ]|[/])*", ErrorMessage = "Invalid Name!")]
         [Display(Name = "Volunteer Name")]
         public string volunteername { get; set; }

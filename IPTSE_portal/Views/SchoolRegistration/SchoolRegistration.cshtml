@@ -1,14 +1,12 @@
 ﻿@model IPTSE_portal.BLL.Models.SchoolRegistrationModel
 @{
     ViewBag.Title = "SchoolRegistration";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <script>
         $(function () {
             $('#txtEmail').blur(function () {
-                alert('a');
                 $('#txtEmail1').val($('#txtEmail').val());
-                //alert('test');
             });
         });
     </script>
@@ -186,7 +184,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            @Html.TextBoxFor(m => m.institution_email, new { @id = "txtEmail1", @class = "form-control input-sm", placeholder = "User ID / Email-ID*", maxlength = 50 })
+                                            @Html.TextBoxFor(m => m.institution_email, new { @id = "txtEmail1", @class = "form-control input-sm", @readonly = "readonly", @disabled = "disabled", placeholder = "User ID / Email-ID*", maxlength = 50 })
                                             @Html.ValidationMessageFor(m => m.institution_email, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
