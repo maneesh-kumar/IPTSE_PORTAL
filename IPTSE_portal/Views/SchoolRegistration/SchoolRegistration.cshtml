@@ -32,14 +32,14 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            @Html.TextBoxFor(m => m.institution_name, new { @id = "institution_name", @class = "form-control input-sm", placeholder = "School / College Name*", maxlength = 50 })
+                                            @Html.TextBoxFor(m => m.institution_name, new { @id = "institution_name", @class = "form-control input-sm", placeholder = "Institution Name*", maxlength = 50 })
                                             @Html.ValidationMessageFor(m => m.institution_name, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
 
                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            @Html.TextBoxFor(m => m.principal_director_name, new { @id = "Principal_name", @class = "form-control input-sm", placeholder = "Principal Name*", maxlength = 50 })
+                                            @Html.TextBoxFor(m => m.principal_director_name, new { @id = "Principal_name", @class = "form-control input-sm", placeholder = "Principal/Director Name*", maxlength = 50 })
                                             @Html.ValidationMessageFor(m => m.principal_director_name, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            @Html.TextBoxFor(m => m.addr1, new { @id = "Address1", @class = "form-control input-sm", placeholder = "Address Line1", maxlength = 50 })
+                                            @Html.TextBoxFor(m => m.addr1, new { @id = "Address1", @class = "form-control input-sm", placeholder = "Address Line1*", maxlength = 50 })
                                             @Html.ValidationMessageFor(m => m.addr1, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -141,14 +141,15 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            @Html.TextBoxFor(m => m.institution_contact, new { @id = "InstitutionContact", @class = "form-control input-sm", placeholder = "School Contact No.*", maxlength = 50 })
+                                            @Html.TextBoxFor(m => m.institution_contact, new { @id = "InstitutionContact", @class = "form-control input-sm", placeholder = "Institution Contact No.*", maxlength = 50 })
                                             @Html.ValidationMessageFor(m => m.institution_contact, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            @Html.EditorFor(m => m.institution_email, new { htmlAttributes = new { @id = "txtEmail", @class = "form-control input-sm", placeholder = "School Email-ID*", maxlength = 50 } })
+                                            @Html.EditorFor(m => m.institution_email, new { htmlAttributes = new { @id = "txtEmail", @class = "form-control input-sm", placeholder = "Institution Email-ID*", maxlength = 50 } })
                                             @Html.ValidationMessageFor(m => m.institution_email, "", new { @class = "text-danger" })
+                                            <span style="color: orangered">Note - This Email-Id would be the Login Id.</span>
                                         </div>
                                     </div>
                                 </div>

@@ -18,5 +18,6 @@ namespace IPTSE_portal.DAL
         public string password { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> LastLoginDateTime { get; set; }
+        public string Login_type { get; set; }
     }
 }

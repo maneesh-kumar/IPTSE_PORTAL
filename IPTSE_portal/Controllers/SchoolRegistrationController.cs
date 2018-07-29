@@ -47,7 +47,8 @@ namespace IPTSE_portal.Controllers
                 {
                     using (var client = new HttpClient())
                     {
-                        client.BaseAddress = new Uri("http://localhost:63138/");
+                        client.BaseAddress = new Uri("http://portal.iptse.com/"); //localhost:63138/
+                        //client.BaseAddress = new Uri("http://localhost:63138/"); 
                         var postTask = client.PostAsJsonAsync<SchoolRegistrationModel>("api/SchoolRegistrationAPI", schoolModel);
                         postTask.Wait();
                         var result = postTask.Result;

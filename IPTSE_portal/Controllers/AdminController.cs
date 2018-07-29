@@ -16,7 +16,7 @@ namespace IPTSE_portal.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            if (Session["id"] == null)
+            if (Session["admin_login"] == null )
             {
                 return RedirectToAction("Login", "IPTSELogin");
             }
@@ -25,6 +25,10 @@ namespace IPTSE_portal.Controllers
 
         public ActionResult RegistrationList()
         {
+            if (Session["admin_login"] == null)
+            {
+                return RedirectToAction("Login", "IPTSELogin");
+            }
             ViewData["RegTable"] = db.IPTSE_Reg_table.ToList();
             ViewData["PaymentTable"] = paymentDb.payment_details.ToList();
             return View();
@@ -32,7 +36,7 @@ namespace IPTSE_portal.Controllers
 
         public ActionResult Details(decimal id)
         {
-            if (Session["id"] == null)
+            if (Session["admin_login"] == null)
             {
                 return RedirectToAction("Login", "IPTSELogin");
             }

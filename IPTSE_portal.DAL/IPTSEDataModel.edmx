@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IPTSEDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IPTSEDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="IPTSE_Reg_table">
           <Key>
             <PropertyRef Name="Id" />
@@ -65,6 +65,7 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="LastLoginDateTime" Type="datetime" />
+          <Property Name="Login_type" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="payment_details">
           <Key>
@@ -81,8 +82,7 @@
           <EntitySet Name="login_table" EntityType="Self.login_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payment_details" EntityType="Self.payment_details" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IPTSEDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -146,6 +146,7 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastLoginDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Login_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="payment_details">
           <Key>
@@ -225,6 +226,7 @@
           <EntitySetMapping Name="login_table">
             <EntityTypeMapping TypeName="IPTSEDBModel.login_table">
               <MappingFragment StoreEntitySet="login_table">
+                <ScalarProperty Name="Login_type" ColumnName="Login_type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

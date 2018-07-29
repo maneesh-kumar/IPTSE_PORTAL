@@ -39,7 +39,7 @@ namespace IPTSE_portal.BLL
                         _schoolRegistration.contact_person_email = schoolRegistrationModel.contact_person_email;
                         _schoolRegistration.information_source = schoolRegistrationModel.information_source;
                         _schoolRegistration.Created_Date = DateTime.Now;
-                        _schoolRegistration.Updated_Date = DateTime.Now;
+                        //_schoolRegistration.Updated_Date = DateTime.Now;
                         objContext.IPTSE_School_Reg_table.Add(_schoolRegistration);
                         objContext.SaveChanges();
                         newIdentityValue = objContext.IPTSE_School_Reg_table.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id);
@@ -48,6 +48,7 @@ namespace IPTSE_portal.BLL
                         encode = System.Text.Encoding.UTF8.GetBytes(schoolRegistrationModel.password);
                         _objLoginTable.password = Convert.ToBase64String(encode);
                         _objLoginTable.Email = schoolRegistrationModel.institution_email;
+                        _objLoginTable.Login_type = "Institution";
                         objContext.login_table.Add(_objLoginTable);
                         objContext.SaveChanges();
                         dbcxtransaction.Commit();
@@ -57,6 +58,7 @@ namespace IPTSE_portal.BLL
                     {
                         dbcxtransaction.Rollback();
                         return newIdentityValue;
+                        throw ex;
                     }
                 }
             }

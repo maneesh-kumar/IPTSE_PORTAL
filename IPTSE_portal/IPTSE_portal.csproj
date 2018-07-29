@@ -387,6 +387,7 @@
     </Content>
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\SchoolRegistration\Successfull.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IPTSE_portal.BLL\IPTSE_portal.BLL.csproj">
