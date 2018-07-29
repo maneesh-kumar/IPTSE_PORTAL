@@ -17,7 +17,29 @@ namespace IPTSE_portal.Controllers.Api
         {
             try
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Not Found!");
+                try
+                {
+                    SchoolRegistrationBLL _objSchoolRegistration = new SchoolRegistrationBLL();
+                    SchoolRegistrationModel record = _objSchoolRegistration.GetSchoolRegistration(Convert.ToInt32(searchText));
+                    if (record == null )
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "School Not found!");
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK, record);
+                    }
+                }
+                catch (SecurityException ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, ex.InnerException);
+                }
+                catch (Exception ex)
+                {
+                    HttpRequestMessage Request = new HttpRequestMessage();
+                    //new EventLogManager().LogException(ex);
+                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+                }
             }
             catch (SecurityException ex)
             {

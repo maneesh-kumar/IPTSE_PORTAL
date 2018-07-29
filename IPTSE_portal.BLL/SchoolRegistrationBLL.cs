@@ -2,6 +2,7 @@
 using IPTSE_portal.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace IPTSE_portal.BLL
         {
             IPTSE_School_Reg_table _schoolRegistration = new IPTSE_School_Reg_table();
             login_table _objLoginTable = new login_table();
-            decimal newIdentityValue=0;
+            decimal newIdentityValue = 0;
             using (var objContext = new IPTSEDBEntities())
             {
                 using (var dbcxtransaction = objContext.Database.BeginTransaction())
@@ -62,6 +63,37 @@ namespace IPTSE_portal.BLL
                     }
                 }
             }
+        }
+
+        public SchoolRegistrationModel GetSchoolRegistration(int id)
+        {
+            IPTSEDBEntities entity = new IPTSEDBEntities();
+            var resultModel = entity.IPTSE_School_Reg_table.Where(a => a.Id.Equals(id)).FirstOrDefault();
+
+            SchoolRegistrationModel registrationModel = new SchoolRegistrationModel();
+            if (resultModel != null)
+            {
+                registrationModel.addr1 = resultModel.addr1;
+                registrationModel.addr2 = resultModel.addr2;
+                registrationModel.branch_name = resultModel.branch_name;
+                registrationModel.city = resultModel.city;
+                registrationModel.contact_person_contact = resultModel.contact_person_contact;
+                registrationModel.contact_person_email = resultModel.contact_person_email;
+                registrationModel.contact_person_name = resultModel.contact_person_name;
+                registrationModel.country = resultModel.country;
+                registrationModel.Created_Date = resultModel.Created_Date;
+                registrationModel.Id = resultModel.Id;
+                registrationModel.information_source = resultModel.information_source;
+                registrationModel.institution_contact = resultModel.institution_contact;
+                registrationModel.institution_email = resultModel.institution_email;
+                registrationModel.institution_name = resultModel.institution_name;
+                registrationModel.principal_director_name = resultModel.principal_director_name;
+                registrationModel.state = resultModel.state;
+                registrationModel.zipcode = resultModel.zipcode;
+                
+            }
+
+            return registrationModel;
         }
     }
 }

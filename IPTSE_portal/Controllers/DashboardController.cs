@@ -1,7 +1,9 @@
-﻿using IPTSE_portal.Models;
+﻿using IPTSE_portal.BLL.Models;
+using IPTSE_portal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -113,11 +115,41 @@ namespace IPTSE_portal.Controllers
             {
                 return RedirectToAction("Login", "IPTSELogin");
             }
-            IPTSE_Reg_table iPTSE_Reg_Table = new IPTSE_Reg_table();
-            iPTSE_Reg_Table.Id = Int32.Parse(Session["id"].ToString());
-            var obj = reg.IPTSE_Reg_table.Where(a => a.Id.Equals(iPTSE_Reg_Table.Id)).FirstOrDefault();
-            obj.contact = obj.contact.ToString();
-            return View(obj);
+
+            if (Session["Type"] != null && Session["Type"].ToString() == "Institution")
+            {
+                using (var client = new HttpClient())
+                {
+                    //client.BaseAddress = new Uri("http://portal.iptse.com/"); //localhost:63138/
+                    client.BaseAddress = new Uri("http://localhost:63138/"); 
+                    var postTask = client.GetAsync("api/SchoolRegistrationAPI/" +  Session["id"].ToString());
+                    postTask.Wait();
+                    var result = postTask.Result;
+                    //TODO - fix this if condition
+                    if (result.IsSuccessStatusCode)
+                    {
+                        //ViewData["success_msg"] = "Congratulation! you have Registered Successfully.";
+                        return View(result);
+                    }
+                    else
+                    {
+                        return View();
+                    }
+                }
+                //BLL.Models.SchoolRegistrationModel iPTSE_Reg_Table = new BLL.Models.SchoolRegistrationModel();
+                //iPTSE_Reg_Table.Id = Int32.Parse(Session["id"].ToString());
+                //var obj = reg.IPTSE_Reg_table.Where(a => a.Id.Equals(iPTSE_Reg_Table.Id)).FirstOrDefault();
+                //obj.contact = obj.contact.ToString();
+                //return View(obj);
+            }
+            else
+            {
+                IPTSE_Reg_table iPTSE_Reg_Table = new IPTSE_Reg_table();
+                iPTSE_Reg_Table.Id = Int32.Parse(Session["id"].ToString());
+                var obj = reg.IPTSE_Reg_table.Where(a => a.Id.Equals(iPTSE_Reg_Table.Id)).FirstOrDefault();
+                obj.contact = obj.contact.ToString();
+                return View(obj);
+            }
         }
 
         public ActionResult Setting()
