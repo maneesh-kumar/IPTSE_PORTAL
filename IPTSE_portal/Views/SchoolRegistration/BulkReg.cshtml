@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Bulk Registration";
+    Layout = "~/Views/Shared/_ipse.cshtml";
+}
+<!-- Page Content -->
+
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!--<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">-->
+        <div class="col-lg-12">
+            <div class="row">
+                <ol class="breadcrumb" style="margin-top: 26px;">
+                    <li>
+                        <a href="#">
+                            <em class="fa fa-home"></em>
+                        </a>
+                    </li>
+                    <li class="active">Upload Students Details</li>
+                </ol>
+            </div><!--/.row-->
+
+            <div class="row">
+
+                @*<div class="col-lg-8">*@
+                @using (Html.BeginForm("BulkRegistration", "SchoolRegistration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading" style="text-align: center;">Bulk Registration Process</div>
+
+                        <div class="panel-body">
+
+                            <p style="color:coral">Note: Without making payment, students can't access course content and mock test option.</p>
+                            <p>Please select the file to upload the student data and register them</p>
+                            <input type="file" name="FileUpload" /> <br />
+                            <input type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-info" />
+                            <input type="submit" name="Process" id="Process" value="Start Processing " class="btn btn-info " />
+                            <p>@{ Html.Encode(Session["Feedback"]);} </p>
+                        </div>
+                        
+                    </div>
+                }
+                @*</div>*@
+
+                <!--<div style="position:fixed;bottom:0px;width:100%">-->
+
+
+                <script src="js/jquery-1.11.1.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <script src="js/chart.min.js"></script>
+                <script src="js/chart-data.js"></script>
+                <script src="js/easypiechart.js"></script>
+                <script src="js/easypiechart-data.js"></script>
+                <script src="js/bootstrap-datepicker.js"></script>
+                <script src="js/custom.js"></script>
+                <script>
+                    window.onload = function () {
+                        var chart1 = document.getElementById("line-chart").getContext("2d");
+                        window.myLine = new Chart(chart1).Line(lineChartData, {
+                            responsive: true,
+                            scaleLineColor: "rgba(0,0,0,.2)",
+                            scaleGridLineColor: "rgba(0,0,0,.05)",
+                            scaleFontColor: "#c5c7cc"
+                        });
+                    };
+                </script>
+
+
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

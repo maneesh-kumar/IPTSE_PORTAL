@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-@model IPTSE_portal.Models.login_table
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -78,14 +77,14 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="~/Dashboard/Index" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="~/Dashboard/Index" class="active"><i class="fa fa-table fa-fw"></i> Dashboard</a>
                     </li>
 
                     @if (Session["Type"] != null && Session["Type"].ToString() == "Institution")
                     {
 
                         <li>
-                            <a href="~/Dashboard/Setting"><i class="fa fa-table fa-fw"></i> Upload Student Details</a>
+                            <a href="~/SchoolRegistration/BulkReg"><i class="fa fa-file-export fa-fw"></i> Upload Student Details</a>
                         </li>
                         <li>
                             <a href="~/Dashboard/Setting"><i class="fa fa-money fa-fw"></i> Payment for uploaded students</a>
