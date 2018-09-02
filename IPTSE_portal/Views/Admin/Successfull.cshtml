@@ -1,0 +1,15 @@
+﻿@model IPTSE_portal.Models.IPTSE_Reg_table
+
+@{
+    ViewBag.Title = "Successful";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    
+    <br>
+    <h2 style="color: #4cff00;" align="Center">@ViewData["success_msg"]</h2>
+    
+}

@@ -12,7 +12,7 @@ namespace IPTSE_portal.Controllers.Api
 {
     public class SchoolRegistrationAPIController : ApiController
     {
-        // GET: api/Exporter
+        // GET: api/SchoolRegistrationAPI/1
         public HttpResponseMessage Get(string searchText)
         {
             try
@@ -21,7 +21,7 @@ namespace IPTSE_portal.Controllers.Api
                 {
                     SchoolRegistrationBLL _objSchoolRegistration = new SchoolRegistrationBLL();
                     SchoolRegistrationModel record = _objSchoolRegistration.GetSchoolRegistration(Convert.ToInt32(searchText));
-                    if (record == null )
+                    if (record == null)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "School Not found!");
                     }
@@ -54,7 +54,35 @@ namespace IPTSE_portal.Controllers.Api
 
         }
 
-        // GET: api/Exporter/5
+        // GET: api/SchoolRegistrationAPI
+        public HttpResponseMessage Get()
+        {
+            try
+            {
+                SchoolRegistrationBLL _objSchoolRegistration = new SchoolRegistrationBLL();
+                List<SchoolRegistrationModel> record = _objSchoolRegistration.GetSchoolRegistrations();
+                if (record == null)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Record Not Found!");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, record);
+                }
+            }
+            catch (SecurityException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, ex.InnerException);
+            }
+            catch (Exception ex)
+            {
+                HttpRequestMessage Request = new HttpRequestMessage();
+                //new EventLogManager().LogException(ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        // GET: api/SchoolRegistrationAPI/5
         public HttpResponseMessage Get(int id)
         {
             try
@@ -79,8 +107,8 @@ namespace IPTSE_portal.Controllers.Api
             try
             {
                 SchoolRegistrationBLL _objSchoolRegistration = new SchoolRegistrationBLL();
-                var insertedRecord=_objSchoolRegistration.InsertSchool(schoolModel);
-                if (insertedRecord == null || insertedRecord==0)
+                var insertedRecord = _objSchoolRegistration.InsertSchool(schoolModel);
+                if (insertedRecord == null || insertedRecord == 0)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "School Not Created!");
                 }

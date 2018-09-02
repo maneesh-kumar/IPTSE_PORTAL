@@ -213,6 +213,7 @@ namespace IPTSE_portal.Controllers
                     byte[] encode = new byte[login_table.password.Length];
                     encode = System.Text.Encoding.UTF8.GetBytes(login_table.password);
                     login_table.password = Convert.ToBase64String(encode);
+                    login_table.Login_type = "Individual";
                     db1.login_table.Add(login_table);
                     db1.SaveChanges();
                     //TempData["Message"] = "Password Created Successfully. Login To Continue..";

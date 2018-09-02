@@ -1,0 +1,108 @@
+﻿@using IPTSE_portal.BLL.Models;
+@using System.Linq;
+
+@{
+    List<SchoolRegistrationModel> schoolRegistrations = ViewData["SchoolList"] as List<SchoolRegistrationModel>;
+}
+
+@using GridMvc.Html
+@using GridMvc.Sorting
+@using GridMvc.Pagination
+
+@{
+    ViewBag.Title = "School Registration List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; ;
+}
+
+
+@Html.AntiForgeryToken()
+
+
+<div class="body-content" style="margin: 10px; border: 2px solid #ccc;padding: 8px;">
+
+    <h2>School Registration Details</h2>
+
+    @*@Html.Grid(Model).AutoGenerateColumns().Sortable().Filterable().WithPaging(6)*@
+
+    @*@helper CustomRenderingOfColumn(IPTSE_Reg_table table, List<payment_details> details)
+    {
+        var isPayDone = details.Count((c) => c.Id == table.Id);
+        ViewData["Payment"] = isPayDone;
+        if (isPayDone > 0)
+        {
+            <text>Yes</text>
+        }
+        else
+        {
+            <text>No</text>
+        }
+    }
+
+    @functions
+    {
+        public int CustomValueOfColumn(IPTSE_Reg_table table, List<payment_details> details)
+        {
+            return details.Count((c) => c.Id == table.Id);
+        }
+    }*@
+
+    @Html.Grid(@schoolRegistrations).Columns(columns =>
+{
+
+    columns.Add(c => c.Id)
+            .Titled("ID")
+            .Filterable(true)
+            .SetWidth(20)
+            .SortInitialDirection(GridSortDirection.Descending)
+            .Sortable(true);
+
+    columns.Add(c => c.institution_name)
+            .Titled("Institute </br>Name")
+            .Filterable(true)
+            .Sortable(true);
+
+    columns.Add(c => c.institution_email)
+            .Titled("Institute </br> email")
+            .Filterable(true)
+            .Sortable(true);
+
+    columns.Add(c => c.principal_director_name)
+            .Titled("Principle</br>/Director")
+            .Filterable(true)
+            .Sortable(true);
+
+    columns.Add(c => c.institution_contact)
+            .Titled("Institute </br>Contact")
+            .Filterable(true)
+            .Sortable(true);
+
+    columns.Add(c => c.contact_person_name)
+            .Titled("Contact </br>Person")
+            .Filterable(true)
+            .Sortable(true);
+    
+    columns.Add(c => c.contact_person_email)
+            .Titled("Contact Person </br>Email")
+            .Filterable(true)
+            .Sortable(true);
+
+    columns.Add(c => c.contact_person_contact)
+           .Titled("Contact Person </br> mobile")
+           .Filterable(true)
+           .Sortable(true);
+
+    columns.Add(c => c.addr1)
+           .Titled("Institute </br>Address")
+           .Filterable(true)
+           .Sortable(true);
+
+    columns.Add(c => c.state)
+           .Titled("State")
+           .Filterable(true)
+           .Sortable(true);
+})
+
+
+
+    <br />
+</div>

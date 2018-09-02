@@ -95,5 +95,42 @@ namespace IPTSE_portal.BLL
 
             return registrationModel;
         }
+
+        public List<SchoolRegistrationModel> GetSchoolRegistrations()
+        {
+            IPTSEDBEntities entity = new IPTSEDBEntities();
+            var resultModels = entity.IPTSE_School_Reg_table.Where(s => s.IsActive == true || s.IsActive == null);
+
+            List<SchoolRegistrationModel> registrationModels = new List<SchoolRegistrationModel>();
+            foreach(var resultModel in resultModels)
+            {
+                SchoolRegistrationModel registrationModel = new SchoolRegistrationModel();
+                if (resultModel != null)
+                {
+                    registrationModel.addr1 = resultModel.addr1;
+                    registrationModel.addr2 = resultModel.addr2;
+                    registrationModel.branch_name = resultModel.branch_name;
+                    registrationModel.city = resultModel.city;
+                    registrationModel.contact_person_contact = resultModel.contact_person_contact;
+                    registrationModel.contact_person_email = resultModel.contact_person_email;
+                    registrationModel.contact_person_name = resultModel.contact_person_name;
+                    registrationModel.country = resultModel.country;
+                    registrationModel.Created_Date = resultModel.Created_Date;
+                    registrationModel.Id = resultModel.Id;
+                    registrationModel.information_source = resultModel.information_source;
+                    registrationModel.institution_contact = resultModel.institution_contact;
+                    registrationModel.institution_email = resultModel.institution_email;
+                    registrationModel.institution_name = resultModel.institution_name;
+                    registrationModel.principal_director_name = resultModel.principal_director_name;
+                    registrationModel.state = resultModel.state;
+                    registrationModel.zipcode = resultModel.zipcode;
+
+                    registrationModels.Add(registrationModel);
+                }
+            }
+            
+
+            return registrationModels;
+        }
     }
 }

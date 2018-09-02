@@ -1992,3 +1992,11 @@ font-size:15px;
   overflow-y: auto;
   height: 350px;
 }
+.form-control2 {
+    width: 11% !important;
+    float: left !important;
+    margin-left: 10px !important;
+}
+.formcontrol_1 {
+    margin-left: 10px !important;
+}

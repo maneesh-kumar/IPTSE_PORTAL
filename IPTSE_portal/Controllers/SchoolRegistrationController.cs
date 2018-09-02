@@ -1,36 +1,24 @@
 ﻿using IPTSE_portal.BLL.Models;
-using IPTSE_portal.Controllers.Api;
+using IPTSE_portal.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
+using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
+using System.Data.Entity.Validation;
 
 namespace IPTSE_portal.Controllers
 {
     public class SchoolRegistrationController : Controller
     {
-        // GET: SchoolRegistration
-        //public ActionResult Index()
-
-        //{
-        //    return View();
-        //}
-
-        //// GET: SchoolRegistration/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        private RegistrationDataModel db = new RegistrationDataModel();
+        private LoginDataModel db1 = new LoginDataModel();
 
         [HttpGet]
         public ActionResult SchoolRegistration()
@@ -72,121 +60,202 @@ namespace IPTSE_portal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BulkRegistration(HttpPostedFileBase FileUpload)
+        public ActionResult BulkRegistration(HttpPostedFileBase postedFile)
         {
-            DataTable dt = new DataTable();
-
-
-            if (FileUpload.ContentLength > 0)
+            HttpPostedFileBase file = Request.Files["postedFile"];
+            List<IPTSE_Reg_table> student_Details = new List<IPTSE_Reg_table>();
+            string filePath = string.Empty;
+            if (postedFile != null)
             {
-
-                string fileName = Path.GetFileName(FileUpload.FileName);
-                string path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-
-
                 try
                 {
-                    FileUpload.SaveAs(path);
+                    string path = Server.MapPath("~/App_Data/Uploads/");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
 
-                    //dt = ProcessCSV(path);
+                    filePath = path + Path.GetFileName(postedFile.FileName);
+                    string extension = Path.GetExtension(postedFile.FileName);
+                    if (extension.Equals(".csv", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        postedFile.SaveAs(filePath);
 
+                        //Read the contents of CSV file.
+                        string csvData = System.IO.File.ReadAllText(filePath);
 
-                    ViewData["Feedback"] = "File uploaded successfully"; // ProcessBulkCopy(dt);
+                        //Execute a loop over the rows.
+                        char[] trimChars = { '\r', '\n' };
+                        csvData = csvData.TrimEnd(trimChars);
+                        string[] rows = csvData.Split('\n');
+                        for (int i = 1; i < rows.Length; i++)
+                        {
+                            var rowparts = rows[i].Split(',');
+                            IPTSE_Reg_table datarow = new IPTSE_Reg_table();
+
+                            datarow.first_name = rowparts[0];
+                            datarow.mid_name = rowparts[1];
+                            datarow.last_name = rowparts[2];
+                            datarow.dob = Convert.ToDateTime(rowparts[3]);
+                            datarow.gender = rowparts[4];
+                            datarow.email = rowparts[5];
+                            datarow.fathername = rowparts[6];
+                            datarow.mothername = rowparts[7];
+                            datarow.country = rowparts[8];
+                            datarow.addr1 = rowparts[9];
+                            datarow.addr2 = rowparts[10];
+                            datarow.city = rowparts[11];
+                            datarow.state = rowparts[12];
+                            datarow.zipcode = rowparts[13];
+                            datarow.contact = rowparts[14];
+                            datarow.schoolname = rowparts[15];
+                            datarow.standard = rowparts[16];
+                            datarow.volunteername = rowparts[17];
+                            datarow.School_ID = Session["id"] != null ? Session["id"].ToString(): null;
+                            student_Details.Add(datarow);
+                            ViewBag.Message = "File uploaded successfully";
+                            
+
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Please upload a csv file only";
+                    }
                 }
                 catch (Exception ex)
                 {
 
-                    ViewData["Feedback"] = ex.Message;
+                    ViewBag.Message = ex.Message;
                 }
             }
             else
             {
-
-                ViewData["Feedback"] = "Please select a file";
+                ViewBag.Message = "Please verify, if you have selected a valid file";
             }
 
-
-            dt.Dispose();
-
-            return View("BulkReg", ViewData["Feedback"]);
+            ViewData["StudentDetails"] = student_Details;
+            Session["StudentDetail"] = student_Details;
+            return View("BulkReg");
         }
 
-        private static DataTable ProcessCSV(string fileName)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Process()
         {
-
-            string Feedback = string.Empty;
-            string line = string.Empty;
-            string[] strArray;
-            DataTable dt = new DataTable();
-            DataRow row;
-
-
-            Regex r = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
-
-
-            StreamReader sr = new StreamReader(fileName);
-
-
-            line = sr.ReadLine();
-            strArray = r.Split(line);
-
-
-            Array.ForEach(strArray, s => dt.Columns.Add(new DataColumn()));
-
-
-
-            while ((line = sr.ReadLine()) != null)
+            ViewBag.Message = string.Empty;
+            if (Session["StudentDetail"] != null)
             {
-                row = dt.NewRow();
+                try
+                {
+                    List<IPTSE_Reg_table> student_Details = new List<IPTSE_Reg_table>();
+                    student_Details = Session["StudentDetail"] as List<IPTSE_Reg_table>;
+                    foreach (IPTSE_Reg_table item in student_Details)
+                    {
+                        if (db.IPTSE_Reg_table.Count(c => c.email == item.email) > 0)
+                        {
+                            ViewBag.Message += "Email-id " + item.email + " already registred. Registration skiiped for this email-id. </br>";
+                        }
+                        else
+                        {
+                            db.IPTSE_Reg_table.Add(item);
+                            db.SaveChanges();
+                            var lstId = db.IPTSE_Reg_table.OrderByDescending(t => t.Id).Select(t1 => t1.Id).FirstOrDefault();
+                            login_table login_table = new login_table();
+                            login_table.Id = lstId;
+                            login_table.email = item.email;
+                            login_table.Login_type = "Individual";
+                            var password = item.first_name + item.dob.ToString("_MMyyyy");
+                            login_table.password = password;
+                            var message = Createpassword(login_table);
+                            if (message == "Success")
+                            {
+                                sendMail(login_table, item.first_name, password);
+                            }
+                            else
+                            {
+                                ViewBag.Message = message;
+                            }
+                        }
+                    }
 
-
-                row.ItemArray = r.Split(line);
-                dt.Rows.Add(row);
+                    if (string.IsNullOrEmpty(ViewBag.Message))
+                    {
+                        ViewBag.Message = "All Registration are completed successfully. Please proceed for Payment.";
+                    }
+                }
+                catch (DbEntityValidationException entityException)
+                {
+                    var validationerror = entityException.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault();
+                    ViewBag.Message = validationerror.PropertyName +" " + validationerror.ErrorMessage;
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.InnerException.Message;
+                }
             }
-
-
-            sr.Dispose();
-
-
-            return dt;
-
-
+            return View("BulkReg");
         }
 
+        private void sendMail(login_table item, string firstName, string password)
+        {
+            string smsg = string.Format("Dear {0},<br/> Your Registration has been sucessfully done.", firstName);
+            smsg += string.Format("Your User ID : {0},<br/>Your Password: {1}", item.Id, password);
+            smsg += "<br/>Please login with your email-id or UserId.<br/> Thank you <br/> IPTSE Admin.";
+            try
+            {
+                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+                message.To.Add(new MailAddress(item.email));
+                message.From = new MailAddress("admin@iptse.in");
+                message.Subject = "IPTSE Registration Confirmation Mail.";
+                message.Body = smsg;
+                message.IsBodyHtml = true;
+                SmtpClient client = new SmtpClient();
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Port = 80;
+                client.Host = "smtpout.asia.secureserver.net";
+                NetworkCredential nc = new NetworkCredential("admin@iptse.in", "Admi@iptse5");
+                client.EnableSsl = false;
+                client.UseDefaultCredentials = true;
+                client.Credentials = nc;
+                client.Send(message);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Unable to send mail. Please contact support team for regisration confirmation";
+            }
+        }
 
-        //private static String ProcessBulkCopy(DataTable dt)
-        //{
-        //    string Feedback = string.Empty;
-        //    string connString = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
+        public string Createpassword(login_table login_table)
+        {
+            string returMsg = string.Empty;
+            if (ModelState.IsValid)
+            {
+                //login_table.Id = Int32.Parse(Session["createpass"].ToString());
+                try
+                {
+                    login_table.Id = login_table.Id;
+                    login_table.email = login_table.email;
+                    byte[] encode = new byte[login_table.password.Length];
+                    encode = System.Text.Encoding.UTF8.GetBytes(login_table.password);
+                    login_table.password = Convert.ToBase64String(encode);
+                    login_table.Login_type = "Individual";
+                    db1.login_table.Add(login_table);
+                    db1.SaveChanges();
+                    returMsg = "Success";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = "Contact Support team. Registration process failed for userid - " + login_table.Id;
+                    returMsg = ViewBag.ErrorMessage;
+                    return returMsg;
+                }
+            }
+            else
+                returMsg = "Contact Support team. Login Creation process failed for userid - " + login_table.Id; ;
 
-
-        //    using (SqlConnection conn = new SqlConnection(connString))
-        //    {
-
-        //        using (var copy = new SqlBulkCopy(conn))
-        //        {
-
-
-        //            conn.Open();
-
-
-        //            copy.DestinationTableName = "BulkImportDetails";
-        //            copy.BatchSize = dt.Rows.Count;
-        //            try
-        //            {
-
-        //                copy.WriteToServer(dt);
-        //                Feedback = "Upload complete";
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Feedback = ex.Message;
-        //            }
-        //        }
-        //    }
-
-        //    return Feedback;
-        //}
+            return returMsg;
+        }
 
 
         private HttpWebRequest GetRequest(string url, string httpMethod = "POST", bool allowAutoRedirect = true)

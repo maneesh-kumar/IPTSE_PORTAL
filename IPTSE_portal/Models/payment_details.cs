@@ -9,12 +9,15 @@ namespace IPTSE_portal.Models
     public partial class payment_details
     {
         [Column(TypeName = "numeric")]
+        [Required(ErrorMessage = "Login Id is Required!")]
         public decimal Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = " Payment Id Required!")]
         [StringLength(50)]
         public string payment_id { get; set; }
 
+        [Required(ErrorMessage = " Payment Date is Required!")]
         public DateTime payment_date { get; set; }
+
     }
 }

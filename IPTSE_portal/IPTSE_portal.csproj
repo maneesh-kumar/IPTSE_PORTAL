@@ -320,7 +320,6 @@
     <Content Include="Scripts\flot\jquery.flot.time.js" />
     <Content Include="Scripts\flot\jquery.flot.tooltip.min.js" />
     <Content Include="Material\GRE_Practice_Test_1_Quant_18_point.pdf" />
-    <Content Include="Grid.mvc.readme" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
@@ -389,6 +388,8 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\SchoolRegistration\Successfull.cshtml" />
     <Content Include="Views\SchoolRegistration\BulkReg.cshtml" />
+    <Content Include="Views\Admin\Successfull.cshtml" />
+    <Content Include="Views\Admin\SchoolRegistrationList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IPTSE_portal.BLL\IPTSE_portal.BLL.csproj">

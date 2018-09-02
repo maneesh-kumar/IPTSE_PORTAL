@@ -1,4 +1,15 @@
-﻿@{
+﻿@using IPTSE_portal.Models;
+@using System.Linq;
+
+@{
+    List<IPTSE_Reg_table> reg_Table = ViewData["StudentDetails"] as List<IPTSE_Reg_table>;
+    //List<payment_details> payment_Details = ViewData["PaymentTable"] as List<payment_details>;
+}
+
+@using GridMvc.Html
+@using GridMvc.Sorting
+@using GridMvc.Pagination
+@{
     ViewBag.Title = "Bulk Registration";
     Layout = "~/Views/Shared/_ipse.cshtml";
 }
@@ -27,21 +38,25 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="panel panel-primary">
+                <div class="panel panel-primary">
 
-                        <div class="panel-heading" style="text-align: center;">Bulk Registration Process</div>
+                    <div class="panel-heading" style="text-align: center;">Bulk Registration Process</div>
 
-                        <div class="panel-body">
+                    <div class="panel-body">
 
-                            <p style="color:coral">Note: Without making payment, students can't access course content and mock test option.</p>
-                            <p>Please select the file to upload the student data and register them</p>
-                            <input type="file" name="FileUpload" /> <br />
-                            <input type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-info" />
-                            <input type="submit" name="Process" id="Process" value="Start Processing " class="btn btn-info " />
-                            <p>@{ Html.Encode(Session["Feedback"]);} </p>
-                        </div>
-                        
+                        <p style="color:coral">Note: Without making payment, students can't access course content and mock test option.</p>
+                        <p style="color:coral"><a href="http://portal.iptse.com/Content/BulkRegistrationTemplate.csv">Bulk Registration File Template</a></p>
+                        <p>Please select the CSV file only to upload the student data and register them. Please use suggested template only.</p>
+                        <input type="file" id="dataFile" name="postedFile" />
+                        <br />
+                        <input type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-info" />
+                        <input type="submit" name="Process" id="Process" formaction="Process" value="Register All" class="btn btn-info " />
+
                     </div>
+                    <div class="col-md-offset-2 col-md-7">
+                        <h4 style="color: #00ff21;" align="Center">@ViewBag.Message</h4>
+                    </div>
+                </div>
                 }
                 @*</div>*@
 
@@ -69,6 +84,74 @@
                 </script>
 
 
+            </div>
+
+            <div class="row">
+                @if (@reg_Table != null)
+                {
+                    @Html.Grid(@reg_Table).Columns(columns =>
+               {
+
+                   columns.Add(c => c.first_name)
+                           .Titled("First Name")
+                           .SetWidth(100)
+                           .Sortable(true);
+
+                   columns.Add(c => c.mid_name)
+               .Titled("Middle Name")
+               .SetWidth(100)
+               .Sortable(true);
+
+                   columns.Add(c => c.last_name)
+               .Titled("Last Name")
+               .SetWidth(100)
+               .Sortable(true);
+
+                   columns.Add(c => c.dob)
+                        .Titled("Date Of Birth")
+                        .SetWidth(100)
+                        .Sortable(true)
+                        .RenderValueAs(c => Convert.ToDateTime(c.dob).ToString("d"));
+
+                   columns.Add(c => c.email)
+                           .Titled("Email")
+                           .SetWidth(100)
+                           .Sortable(true);
+
+                   columns.Add(c => c.fathername)
+                           .Titled("Father Name")
+                           .SetWidth(100)
+                           .Sortable(true);
+
+                   columns.Add(c => c.mothername)
+                        .Titled("Last Name")
+                        .SetWidth(100)
+                        .Sortable(true);
+
+                   columns.Add(c => c.addr1)
+                        .Titled("Last Name")
+                        .SetWidth(100)
+                        .Sortable(true);
+
+                   columns.Add(c => c.city)
+                           .Titled("City")
+                           .SetWidth(110)
+                           .Sortable(true);
+
+                   columns.Add(c => c.state)
+                           .Titled("State")
+                           .SetWidth(110)
+                           .Sortable(true);
+
+                   columns.Add(c => c.schoolname)
+                        .Titled("School Name")
+                        .SetWidth(100)
+                        .Sortable(true);
+
+               })
+                }
+                <br />
+                <hr/>
             </div>
         </div>
         <!-- /.row -->

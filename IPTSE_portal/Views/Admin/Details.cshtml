@@ -1,162 +1,216 @@
-﻿@model IPTSE_portal.Models.IPTSE_Reg_table
+﻿@model IPTSE_portal.Models.payment_details
+@using IPTSE_portal.Models;
+
+@{
+    IPTSE_Reg_table regInfo = ViewData["RegInfo"] as IPTSE_Reg_table;
+    //payment_details payDetail = ViewData["PaymentDetail"] as payment_details;
+}
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>IPTSE_Reg_table</h4>
+<style>
+    .form-control2 {
+        width: 11% !important;
+        float: left !important;
+        margin-left: 10px !important;
+    }
+
+    .formcontrol_1 {
+        margin-left: 10px !important;
+    }
+
+    .btn2 a {
+        color: #fff;
+    }
+</style>
+
+<div style="padding:10px">
+    <h3> User Details</h3>
+    <p>
+        @Html.ActionLink("Back to List", "RegistrationList")
+    </p>
     <hr />
+
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.first_name)
+            First Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.first_name)
+            @Html.DisplayFor(r => regInfo.first_name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.mid_name)
+            Middle Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mid_name)
+            @Html.DisplayFor(r => regInfo.mid_name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.last_name)
+            Last Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.last_name)
+            @Html.DisplayFor(r => regInfo.last_name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.gender)
+            Gender
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.gender)
+            @Html.DisplayFor(r => regInfo.gender)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.addr1)
+            Address 1
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.addr1)
+            @Html.DisplayFor(r => regInfo.addr1)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.addr2)
+            Address 2
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.addr2)
+            @Html.DisplayFor(r => regInfo.addr2)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.city)
+            City
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.city)
+            @Html.DisplayFor(r => regInfo.city)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.state)
+            State
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.state)
+            @Html.DisplayFor(r => regInfo.state)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.zipcode)
+            Pincode
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.zipcode)
+            @Html.DisplayFor(r => regInfo.zipcode)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.country)
+            Country
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.country)
+            @Html.DisplayFor(r => regInfo.country)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.contact)
+            Contact
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.contact)
+            @Html.DisplayFor(r => regInfo.contact)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.email)
+            Email
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.email)
+            @Html.DisplayFor(r => regInfo.email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dob)
+            DateOfBirth
         </dt>
-
+        @{
+            string parameterValue = regInfo.dob.ToShortDateString();
+        }
         <dd>
-            @Html.DisplayFor(model => model.dob)
+            @Html.DisplayFor(r => parameterValue)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.schoolname)
+            School Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.schoolname)
+            @Html.DisplayFor(r => regInfo.schoolname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.standard)
+            Standard/course
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.standard)
+            @Html.DisplayFor(r => regInfo.standard)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.mothername)
+            Mother Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mothername)
+            @Html.DisplayFor(r => regInfo.mothername)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fathername)
+            Father name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fathername)
+            @Html.DisplayFor(r => regInfo.fathername)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.volunteername)
+            Volunteer Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.volunteername)
+            @Html.DisplayFor(r => regInfo.volunteername)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "RegistrationList")
-</p>
+
+@using (Html.BeginForm("Activate", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <form role="form">
+        <div>
+            <span style="padding:10px">Enter Payment Deatails</span><br />
+            <div>
+                @Html.EditorFor(p => Model.Id, new { htmlAttributes = new { @id = "txtId", @class = "form-control form-control2 input-sm", placeholder = "ID*", maxlength = 50 } })
+
+            </div>
+            <div>
+                @Html.EditorFor(p => Model.payment_id, new { htmlAttributes = new { @id = "txtId", @class = "form-control form-control2 input-sm", placeholder = "Payment Ref*", maxlength = 50 } })
+                @Html.ValidationMessageFor(p => Model.payment_id, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.EditorFor(p => Model.payment_date, new { htmlAttributes = new { @class = "formcontrol1 formcontrol_1 input-sm datefield", placeholder = "MM/DD/YYYY" } })
+
+                @Html.ValidationMessageFor(p => Model.payment_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <p style="margin:10px; padding:0px" class="btn btn2 btn-primary">
+            
+                <input type="submit" value="Activate" class="btn btn-info btn-block">
+           
+        </p>
+    </form>
+}
