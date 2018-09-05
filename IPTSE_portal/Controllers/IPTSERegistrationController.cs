@@ -245,7 +245,9 @@ namespace IPTSE_portal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ForgetPassword(IPTSE_Reg_table iPTSE_Reg_table)
         {
-            var obj = db.IPTSE_Reg_table.Where(a => a.email.Equals(iPTSE_Reg_table.email)).FirstOrDefault();
+            //var obj = db.IPTSE_Reg_table.Where(a => a.email.Equals(iPTSE_Reg_table.email)).FirstOrDefault();
+            var usermail = iPTSE_Reg_table.email;
+            var obj = db1.login_table.Where(a => a.email.Equals(usermail)).FirstOrDefault();
             if (obj != null)
             {
                 login_table login_Table = new login_table();

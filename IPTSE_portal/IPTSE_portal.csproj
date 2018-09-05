@@ -390,6 +390,7 @@
     <Content Include="Views\SchoolRegistration\BulkReg.cshtml" />
     <Content Include="Views\Admin\Successfull.cshtml" />
     <Content Include="Views\Admin\SchoolRegistrationList.cshtml" />
+    <Content Include="Views\Dashboard\SchoolPaymentdetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IPTSE_portal.BLL\IPTSE_portal.BLL.csproj">

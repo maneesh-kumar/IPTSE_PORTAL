@@ -161,6 +161,15 @@ namespace IPTSE_portal.Controllers
             return View();
         }
 
+        public ActionResult SchoolPaymentdetails()
+        {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("Login", "IPTSELogin");
+            }
+            return View();
+        }
+
         public ActionResult logout()
         {
             Session.Clear();
