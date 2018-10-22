@@ -119,7 +119,7 @@ namespace IPTSE_portal.Controllers
                         {
                             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                             message.To.Add(new MailAddress(iPTSE_Reg_table.email));
-                            message.From = new MailAddress("admin@iptse.in");
+                            message.From = new MailAddress("info@iptse.in");
                             message.Subject = "IPTSE Registration Confirmation Mail.";
                             message.Body = smsg;
                             message.IsBodyHtml = true;
@@ -127,7 +127,7 @@ namespace IPTSE_portal.Controllers
                             client.DeliveryMethod = SmtpDeliveryMethod.Network;
                             client.Port = 80;
                             client.Host = "smtpout.asia.secureserver.net";
-                            NetworkCredential nc = new NetworkCredential("admin@iptse.in", "Admi@iptse5");
+                            NetworkCredential nc = new NetworkCredential("info@iptse.in", "Iptse@2018");
                             client.EnableSsl = false;
                             client.UseDefaultCredentials = true;
                             client.Credentials = nc;
@@ -270,7 +270,7 @@ namespace IPTSE_portal.Controllers
                     {
                         System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                         message.To.Add(new MailAddress(iPTSE_Reg_table.email));
-                        message.From = new MailAddress("admin@iptse.in");
+                        message.From = new MailAddress("info@iptse.in");
                         message.Subject = "IPTSE Login Details";
                         message.Body = smsg;
                         //message.IsBodyHtml = true;
@@ -278,7 +278,7 @@ namespace IPTSE_portal.Controllers
                         client.DeliveryMethod = SmtpDeliveryMethod.Network;
                         client.Port = 80;
                         client.Host = "smtpout.asia.secureserver.net";
-                        NetworkCredential nc = new NetworkCredential("admin@iptse.in", "Admi@iptse5");
+                        NetworkCredential nc = new NetworkCredential("info@iptse.in", "Iptse@2018");
                         client.EnableSsl = false;
                         client.UseDefaultCredentials = true;
                         client.Credentials = nc;
@@ -320,7 +320,7 @@ namespace IPTSE_portal.Controllers
                     {
                         System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                         message.To.Add(new MailAddress(iPTSE_Reg_table.email));
-                        message.From = new MailAddress("admin@iptse.in");
+                        message.From = new MailAddress("info@iptse.in");
                         message.Subject = "Verification Mail";
                         message.Body = smsg;
                         message.IsBodyHtml = true;
@@ -328,7 +328,7 @@ namespace IPTSE_portal.Controllers
                         client.DeliveryMethod = SmtpDeliveryMethod.Network;
                         client.Port = 80;
                         client.Host = "smtpout.asia.secureserver.net";
-                        NetworkCredential nc = new NetworkCredential("admin@iptse.in", "Admi@iptse5");
+                        NetworkCredential nc = new NetworkCredential("info@iptse.in", "Iptse@2018");
                         client.EnableSsl = false;
                         client.UseDefaultCredentials = true;
                         client.Credentials = nc;
