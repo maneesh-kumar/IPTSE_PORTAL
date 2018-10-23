@@ -49,7 +49,7 @@ namespace IPTSE_portal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registration([Bind(Include = "Id,first_name,mid_name,last_name,dob,gender,email,fathername,mothername,country,addr1,addr2,city,state,zipcode,contact,password,confirmpassword,schoolname,standard,volunteername")] IPTSE_Reg_table_New iPTSE_Reg_table)
+        public ActionResult Registration([Bind(Include = "Id,first_name,mid_name,last_name,dob,gender,email,fathername,mothername,country,addr1,addr2,city,state,zipcode,contact,password,confirmpassword,schoolname,InstitutionType,standard,volunteername")] IPTSE_Reg_table_New iPTSE_Reg_table)
         {
             if (ModelState.IsValid)
             {
@@ -82,6 +82,7 @@ namespace IPTSE_portal.Controllers
                         iPTSE_Reg_table_New.zipcode = iPTSE_Reg_table.zipcode;
                         iPTSE_Reg_table_New.contact = iPTSE_Reg_table.contact;
                         iPTSE_Reg_table_New.schoolname = iPTSE_Reg_table.schoolname;
+                        iPTSE_Reg_table_New.InstitutionType = iPTSE_Reg_table.InstitutionType;
                         iPTSE_Reg_table_New.standard = iPTSE_Reg_table.standard;
                         iPTSE_Reg_table_New.volunteername = iPTSE_Reg_table.volunteername;
                         db.IPTSE_Reg_table.Add(iPTSE_Reg_table_New);

@@ -36,5 +36,7 @@ namespace IPTSE_portal.DAL
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
+        public string School_ID { get; set; }
+        public string InstitutionType { get; set; }
     }
 }

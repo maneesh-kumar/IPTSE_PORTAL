@@ -113,6 +113,11 @@ namespace IPTSE_portal.Models
         [Display(Name = "School Name")]
         public string schoolname { get; set; }
 
+        [Required(ErrorMessage = "InstitutionType is Required!")]
+        [StringLength(10, ErrorMessage = "InstitutionType is Required!")]
+        [Display(Name = "InstitutionType")]
+        public string InstitutionType { get; set; }
+
         [Required(ErrorMessage = "Standard/Course Required!")]
         [StringLength(50, MinimumLength = 1)]
         [Display(Name = "Standard")]

@@ -12,15 +12,15 @@
           <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="mid_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" />
           <Property Name="gender" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="addr1" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="addr2" Type="nvarchar" MaxLength="50" />
           <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="zipcode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="zipcode" Type="nvarchar" MaxLength="15" />
           <Property Name="country" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="contact" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="contact" Type="nvarchar" MaxLength="15" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="dob" Type="date" Nullable="false" />
           <Property Name="schoolname" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -31,6 +31,8 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Updated_Date" Type="datetime" />
+          <Property Name="School_ID" Type="nvarchar" MaxLength="100" />
+          <Property Name="InstitutionType" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="IPTSE_School_Reg_table">
           <Key>
@@ -52,7 +54,7 @@
           <Property Name="contact_person_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="contact_person_contact" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="contact_person_email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="information_source" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="information_source" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Updated_Date" Type="datetime" />
@@ -63,7 +65,7 @@
           </Key>
           <Property Name="Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="LastLoginDateTime" Type="datetime" />
           <Property Name="Login_type" Type="nvarchar" MaxLength="20" />
         </EntityType>
@@ -74,7 +76,6 @@
           <Property Name="Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="payment_id" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="payment_date" Type="datetime" Nullable="false" />
-          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityContainer Name="IPTSEDBModelStoreContainer">
           <EntitySet Name="IPTSE_Reg_table" EntityType="Self.IPTSE_Reg_table" Schema="dbo" store:Type="Tables" />
@@ -93,15 +94,15 @@
           <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="mid_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="addr1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="addr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="contact" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contact" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="schoolname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -112,6 +113,8 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Created_Date" Type="DateTime" Precision="3" />
           <Property Name="Updated_Date" Type="DateTime" Precision="3" />
+          <Property Name="School_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="IPTSE_School_Reg_table">
           <Key>
@@ -133,7 +136,7 @@
           <Property Name="contact_person_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="contact_person_contact" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="contact_person_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="information_source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="information_source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Created_Date" Type="DateTime" Precision="3" />
           <Property Name="Updated_Date" Type="DateTime" Precision="3" />
@@ -147,6 +150,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastLoginDateTime" Type="DateTime" Precision="3" />
           <Property Name="Login_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="payment_details">
           <Key>
@@ -172,6 +176,8 @@
           <EntitySetMapping Name="IPTSE_Reg_table">
             <EntityTypeMapping TypeName="IPTSEDBModel.IPTSE_Reg_table">
               <MappingFragment StoreEntitySet="IPTSE_Reg_table">
+                <ScalarProperty Name="InstitutionType" ColumnName="InstitutionType" />
+                <ScalarProperty Name="School_ID" ColumnName="School_ID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="mid_name" ColumnName="mid_name" />
@@ -226,10 +232,10 @@
           <EntitySetMapping Name="login_table">
             <EntityTypeMapping TypeName="IPTSEDBModel.login_table">
               <MappingFragment StoreEntitySet="login_table">
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="Login_type" ColumnName="Login_type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="LastLoginDateTime" ColumnName="LastLoginDateTime" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -240,7 +246,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="payment_id" ColumnName="payment_id" />
                 <ScalarProperty Name="payment_date" ColumnName="payment_date" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

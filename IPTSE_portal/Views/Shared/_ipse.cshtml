@@ -22,7 +22,12 @@
     <!-- Custom Fonts -->
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
+    <script>
+        function openInNewTab(url) {
+            var win = window.open(url, '_blank');
+            win.focus();
+        }
+    </script>
 </head>
 <body style="background-color:lightsteelblue">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -99,8 +104,9 @@
                             <a href="~/Dashboard/content"><i class="fa fa-table fa-fw"></i> Course Content</a>
                         </li>
                         <li>
-                            <a href="~/Dashboard/mocktest"><i class="fa fa-edit fa-fw"></i> Mock Test</a>
+                            <a href="#" onclick="openInNewTab('http://test.iptse.com/Mock/Index');"><i class="fa fa-edit fa-fw"></i>Login For Test</a>
                         </li>
+
                         <li>
                             <a href="~/Dashboard/payment"><i class="fa fa-money fa-fw"></i> Pay Online</a>
                         </li>
