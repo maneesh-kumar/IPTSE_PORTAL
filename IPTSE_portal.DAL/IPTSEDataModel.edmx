@@ -147,7 +147,6 @@
           </Key>
           <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastLoginDateTime" Type="DateTime" Precision="3" />
           <Property Name="Login_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -159,7 +158,6 @@
           <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="payment_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="payment_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityContainer Name="IPTSEDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="IPTSE_Reg_table" EntityType="Self.IPTSE_Reg_table" />

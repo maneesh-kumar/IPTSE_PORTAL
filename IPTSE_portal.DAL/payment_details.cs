@@ -17,6 +17,5 @@ namespace IPTSE_portal.DAL
         public decimal Id { get; set; }
         public string payment_id { get; set; }
         public System.DateTime payment_date { get; set; }
-        public decimal Amount { get; set; }
     }
 }

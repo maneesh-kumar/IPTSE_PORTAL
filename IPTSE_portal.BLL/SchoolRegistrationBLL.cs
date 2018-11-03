@@ -15,7 +15,7 @@ namespace IPTSE_portal.BLL
         {
             IPTSE_School_Reg_table _schoolRegistration = new IPTSE_School_Reg_table();
             login_table _objLoginTable = new login_table();
-            decimal newIdentityValue = 0;
+            decimal newIdentityValue = -1;
             using (var objContext = new IPTSEDBEntities())
             {
                 using (var dbcxtransaction = objContext.Database.BeginTransaction())
@@ -48,7 +48,7 @@ namespace IPTSE_portal.BLL
                         byte[] encode = new byte[schoolRegistrationModel.password.Length];
                         encode = System.Text.Encoding.UTF8.GetBytes(schoolRegistrationModel.password);
                         _objLoginTable.password = Convert.ToBase64String(encode);
-                        _objLoginTable.Email = schoolRegistrationModel.institution_email;
+                        _objLoginTable.email = schoolRegistrationModel.institution_email;
                         _objLoginTable.Login_type = "Institution";
                         objContext.login_table.Add(_objLoginTable);
                         objContext.SaveChanges();
@@ -58,9 +58,9 @@ namespace IPTSE_portal.BLL
                     catch (Exception ex)
                     {
                         dbcxtransaction.Rollback();
-                        return newIdentityValue;
                         throw ex;
                     }
+                    
                 }
             }
         }

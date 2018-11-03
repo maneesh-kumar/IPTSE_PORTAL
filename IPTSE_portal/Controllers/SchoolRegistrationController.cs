@@ -19,7 +19,7 @@ namespace IPTSE_portal.Controllers
     {
         private RegistrationDataModel db = new RegistrationDataModel();
         private LoginDataModel db1 = new LoginDataModel();
-
+        
         [HttpGet]
         public ActionResult SchoolRegistration()
         {
@@ -47,6 +47,10 @@ namespace IPTSE_portal.Controllers
                             ViewData["success_msg"] = "Congratulation! you have Registered Successfully.";
                             return View("Successfull");
                         }
+                        else
+                        {
+                            ViewBag.ErrorMessage = "Registration failed. Please contact IPTSE help line.";
+                        }
                     }
                 }
                 catch (Exception ex1)
@@ -65,6 +69,7 @@ namespace IPTSE_portal.Controllers
             HttpPostedFileBase file = Request.Files["postedFile"];
             List<IPTSE_Reg_table> student_Details = new List<IPTSE_Reg_table>();
             string filePath = string.Empty;
+            
             if (postedFile != null)
             {
                 try
@@ -111,6 +116,7 @@ namespace IPTSE_portal.Controllers
                             datarow.schoolname = rowparts[15];
                             datarow.standard = rowparts[16];
                             datarow.volunteername = rowparts[17];
+                            datarow.InstitutionType = string.Empty;
                             datarow.School_ID = Session["id"] != null ? Session["id"].ToString(): null;
                             student_Details.Add(datarow);
                             ViewBag.Message = "File uploaded successfully";
