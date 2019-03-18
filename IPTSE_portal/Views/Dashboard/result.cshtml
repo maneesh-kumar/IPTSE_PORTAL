@@ -3,32 +3,46 @@
     ViewBag.Title = "result";
     Layout = "~/Views/Shared/_ipse.cshtml";
 }
+@using (Html.BeginForm())
+{
 
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="col-lg-12">
-            <div class="row">
-                <ol class="breadcrumb" style="margin-top: 26px;">
-                    <li>
-                        <a href="index">
-                            <em class="fa fa-home"></em>
-                        </a>
-                    </li>
-                    <li class="active">Result</li>
-                </ol>
-            </div><!--/.row-->
-            <div class="row">
-                <div class="col-lg-12">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="col-lg-12">
+                <div class="row">
+                    <ol class="breadcrumb" style="margin-top: 26px;">
+                        <li>
+                            <a href="index">
+                                <em class="fa fa-home"></em>
+                            </a>
+                        </li>
+                        <li class="active">Result</li>
+                    </ol>
+                </div><!--/.row-->
+                <div class="row">
+                    <div class="col-lg-12">
 
-                    Result Comming Soon...
-                    Thank You!
+
+                        <h4>@ViewBag.msg</h4>
+                        <table width="100%">
+                            <tr><th>Total Question</th><th>Marks Obtained</th><th>Total Marks</th><th>Marks Percentage</th></tr>
+                            <tr>
+                                <td><p> @ViewBag.TotalQuestion</p></td>
+                                <td>
+                                    <p>
+                                        @ViewBag.MarksObtained
+                                    </p>
+                                </td>
+                                <td><p>@ViewBag.TotalMarks</p></td>
+                                <td><p>@ViewBag.MarksPercentage</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- /#page-wrapper -->
-
-
+        </div>
+}
+        <!-- /#page-wrapper -->

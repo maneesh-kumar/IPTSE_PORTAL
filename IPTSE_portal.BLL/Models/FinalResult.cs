@@ -13,5 +13,6 @@ namespace IPTSE_portal.BLL
         public decimal MarksObtained { get; set; }
         public int TotalQuestion { get; set; }
         public decimal MarksPercentage { get; set; }
+        public int TotalMarks { get; set; }
     }
 }

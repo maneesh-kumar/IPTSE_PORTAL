@@ -12,14 +12,14 @@ warning 6002: The table/view 'IPTSEDataBase.dbo.Final_Result' does not have a pr
             <PropertyRef Name="Id" />
             <PropertyRef Name="CandidateId" />
             <PropertyRef Name="MarksObtained" />
-            <PropertyRef Name="TotalQuestion" />
+            <PropertyRef Name="TotalMarks" />
             <PropertyRef Name="MarksPercentage" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CandidateId" Type="int" Nullable="false" />
-          <Property Name="MarksObtained" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="TotalQuestion" Type="int" Nullable="false" />
-          <Property Name="MarksPercentage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MarksObtained" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalMarks" Type="int" Nullable="false" />
+          <Property Name="MarksPercentage" Type="decimal" Precision="18" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="IPTSE_Reg_table">
           <Key>
@@ -103,7 +103,7 @@ warning 6002: The table/view 'IPTSEDataBase.dbo.Final_Result' does not have a pr
     [Final_Result].[Id] AS [Id], 
     [Final_Result].[CandidateId] AS [CandidateId], 
     [Final_Result].[MarksObtained] AS [MarksObtained], 
-    [Final_Result].[TotalQuestion] AS [TotalQuestion], 
+    [Final_Result].[TotalMarks] AS [TotalMarks], 
     [Final_Result].[MarksPercentage] AS [MarksPercentage]
     FROM [dbo].[Final_Result] AS [Final_Result]</DefiningQuery>
           </EntitySet>
@@ -200,12 +200,14 @@ warning 6002: The table/view 'IPTSEDataBase.dbo.Final_Result' does not have a pr
             <PropertyRef Name="MarksObtained" />
             <PropertyRef Name="TotalQuestion" />
             <PropertyRef Name="MarksPercentage" />
+            <PropertyRef Name="TotalMarks" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="CandidateId" Type="Int32" Nullable="false" />
-          <Property Name="MarksObtained" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MarksObtained" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="TotalQuestion" Type="Int32" Nullable="false" />
-          <Property Name="MarksPercentage" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MarksPercentage" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="TotalMarks" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -292,8 +294,8 @@ warning 6002: The table/view 'IPTSEDataBase.dbo.Final_Result' does not have a pr
           <EntitySetMapping Name="Final_Result">
             <EntityTypeMapping TypeName="IPTSEDBModel.Final_Result">
               <MappingFragment StoreEntitySet="Final_Result">
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
                 <ScalarProperty Name="MarksPercentage" ColumnName="MarksPercentage" />
-                <ScalarProperty Name="TotalQuestion" ColumnName="TotalQuestion" />
                 <ScalarProperty Name="MarksObtained" ColumnName="MarksObtained" />
                 <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

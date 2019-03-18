@@ -50,6 +50,16 @@ namespace IPTSE_portal.Controllers
             FinalResult objResult = new FinalResult();
             FinalResultBLL objGetResult = new FinalResultBLL();
             objResult = objGetResult.GetFinalResult(Convert.ToInt32(Session["id"]));
+            if (objResult != null)
+            {
+                ViewBag.TotalQuestion = objResult.TotalQuestion;
+                ViewBag.MarksObtained = objResult.MarksObtained;
+                ViewBag.MarksPercentage = objResult.MarksPercentage;
+                ViewBag.TotalMarks = objResult.TotalMarks;
+                ViewBag.msg = "You have successfully completed the exam. Please find the exam details below.";
+                return View("result");
+
+            }
             return View();
         }
         public ActionResult mocktest()
