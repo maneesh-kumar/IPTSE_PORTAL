@@ -12,14 +12,12 @@ namespace IPTSE_portal.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class login_table
+    public partial class Final_Result
     {
-        public decimal Id { get; set; }
-        public string password { get; set; }
-        public Nullable<System.DateTime> LastLoginDateTime { get; set; }
-        public string Login_type { get; set; }
-        public string email { get; set; }
-        public string Email { get; set; }
-        public string email1 { get; set; }
+        public int Id { get; set; }
+        public int CandidateId { get; set; }
+        public decimal MarksObtained { get; set; }
+        public int TotalQuestion { get; set; }
+        public decimal MarksPercentage { get; set; }
     }
 }

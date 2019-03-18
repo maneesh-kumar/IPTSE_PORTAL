@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="FinalResultBLL.cs" />
+    <Compile Include="Models\FinalResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SchoolRegistrationModel.cs" />
     <Compile Include="SchoolRegistrationBLL.cs" />

@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Final_Result.cs">
+      <DependentUpon>IPTSEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="IPTSEDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

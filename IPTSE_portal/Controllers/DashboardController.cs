@@ -1,4 +1,5 @@
-﻿using IPTSE_portal.BLL.Models;
+﻿using IPTSE_portal.BLL;
+using IPTSE_portal.BLL.Models;
 using IPTSE_portal.Models;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,17 @@ namespace IPTSE_portal.Controllers
             }
             return View();
             
+        }
+        public ActionResult result()
+        {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("Login", "IPTSELogin");
+            }
+            FinalResult objResult = new FinalResult();
+            FinalResultBLL objGetResult = new FinalResultBLL();
+            objResult = objGetResult.GetFinalResult(Convert.ToInt32(Session["id"]));
+            return View();
         }
         public ActionResult mocktest()
         {

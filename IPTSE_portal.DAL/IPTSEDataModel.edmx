@@ -5,6 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="IPTSEDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IPTSEDataBase.dbo.Final_Result' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Final_Result">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CandidateId" />
+            <PropertyRef Name="MarksObtained" />
+            <PropertyRef Name="TotalQuestion" />
+            <PropertyRef Name="MarksPercentage" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CandidateId" Type="int" Nullable="false" />
+          <Property Name="MarksObtained" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TotalQuestion" Type="int" Nullable="false" />
+          <Property Name="MarksPercentage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="IPTSE_Reg_table">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,6 +98,15 @@
           <EntitySet Name="IPTSE_School_Reg_table" EntityType="Self.IPTSE_School_Reg_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="login_table" EntityType="Self.login_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payment_details" EntityType="Self.payment_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Final_Result" EntityType="Self.Final_Result" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Final_Result].[Id] AS [Id], 
+    [Final_Result].[CandidateId] AS [CandidateId], 
+    [Final_Result].[MarksObtained] AS [MarksObtained], 
+    [Final_Result].[TotalQuestion] AS [TotalQuestion], 
+    [Final_Result].[MarksPercentage] AS [MarksPercentage]
+    FROM [dbo].[Final_Result] AS [Final_Result]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -150,6 +175,8 @@
           <Property Name="LastLoginDateTime" Type="DateTime" Precision="3" />
           <Property Name="Login_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="payment_details">
           <Key>
@@ -164,7 +191,22 @@
           <EntitySet Name="IPTSE_School_Reg_table" EntityType="Self.IPTSE_School_Reg_table" />
           <EntitySet Name="login_table" EntityType="Self.login_table" />
           <EntitySet Name="payment_details" EntityType="Self.payment_details" />
+          <EntitySet Name="Final_Result" EntityType="IPTSEDBModel.Final_Result" />
         </EntityContainer>
+        <EntityType Name="Final_Result">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CandidateId" />
+            <PropertyRef Name="MarksObtained" />
+            <PropertyRef Name="TotalQuestion" />
+            <PropertyRef Name="MarksPercentage" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="MarksObtained" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TotalQuestion" Type="Int32" Nullable="false" />
+          <Property Name="MarksPercentage" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -230,7 +272,7 @@
           <EntitySetMapping Name="login_table">
             <EntityTypeMapping TypeName="IPTSEDBModel.login_table">
               <MappingFragment StoreEntitySet="login_table">
-                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="email1" ColumnName="email" />
                 <ScalarProperty Name="Login_type" ColumnName="Login_type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -244,6 +286,17 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="payment_id" ColumnName="payment_id" />
                 <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Final_Result">
+            <EntityTypeMapping TypeName="IPTSEDBModel.Final_Result">
+              <MappingFragment StoreEntitySet="Final_Result">
+                <ScalarProperty Name="MarksPercentage" ColumnName="MarksPercentage" />
+                <ScalarProperty Name="TotalQuestion" ColumnName="TotalQuestion" />
+                <ScalarProperty Name="MarksObtained" ColumnName="MarksObtained" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

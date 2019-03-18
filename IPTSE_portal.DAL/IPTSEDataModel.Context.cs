@@ -29,5 +29,6 @@ namespace IPTSE_portal.DAL
         public virtual DbSet<IPTSE_School_Reg_table> IPTSE_School_Reg_table { get; set; }
         public virtual DbSet<login_table> login_table { get; set; }
         public virtual DbSet<payment_details> payment_details { get; set; }
+        public virtual DbSet<Final_Result> Final_Result { get; set; }
     }
 }
